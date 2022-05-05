@@ -1,6 +1,10 @@
 package fr.umontpellier.iut.vues;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 /**
  * Cette classe présente les éléments des joueurs autres que le joueur courant,
@@ -10,6 +14,15 @@ import javafx.scene.layout.Pane;
  */
 public class VueAutresJoueurs extends Pane {
 
-
+    public VueAutresJoueurs() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/autresJoueurs.fxml"));
+            loader.setRoot(this);
+            loader.setController(this);
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

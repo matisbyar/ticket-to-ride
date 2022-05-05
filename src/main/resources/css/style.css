@@ -10,4 +10,14 @@
     -fx-stroke: "black";
 }
 
+#nomJoueur {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 16px;
+}
+
+#sousTitreJoueur {
+    -fx-font-family: "Roboto";
+    -fx-text-fill: #c5c5c5;
+}
+
 
