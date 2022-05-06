@@ -29,6 +29,8 @@ public class VueDuJeu extends Pane {
         return jeu;
     }
 
-    public void creerBindings() {}
+    public void creerBindings() {
+
+    }
 
 }

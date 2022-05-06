@@ -3,6 +3,7 @@ package fr.umontpellier.iut.vues;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -14,6 +15,12 @@ import java.io.IOException;
  */
 public class VueAutresJoueurs extends Pane {
 
+    @FXML
+    private Text nomUn;
+    private Text nomDeux;
+    private Text nomTrois;
+    private Text nomQuatre;
+
     public VueAutresJoueurs() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/autresJoueurs.fxml"));
@@ -24,5 +31,6 @@ public class VueAutresJoueurs extends Pane {
             e.printStackTrace();
         }
     }
+
 
 }

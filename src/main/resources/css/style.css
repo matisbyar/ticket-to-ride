@@ -10,13 +10,13 @@
     -fx-stroke: "black";
 }
 
-#nomJoueur {
+#nomUn, #nomDeux, #nomTrois, #nomQuatre {
     -fx-font-family: "Georgia";
     -fx-font-size: 16px;
 }
 
 #sousTitreJoueur {
-    -fx-font-family: "Roboto";
+    -fx-font-family: "Andale Mono";
     -fx-text-fill: #c5c5c5;
 }
 

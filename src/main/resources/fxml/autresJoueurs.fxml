@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <fx:root maxHeight="600.0" maxWidth="150.0" minHeight="600.0" minWidth="150.0" prefHeight="600.0" prefWidth="150.0" stylesheets="@../css/style.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -16,33 +15,33 @@
                   <Pane prefHeight="147.0" prefWidth="150.0">
                      <children>
                         <Circle fill="WHITE" layoutX="75.0" layoutY="54.0" radius="39.0" stroke="#d3d3d3" strokeType="INSIDE" />
-                        <Text id="nomJoueur" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
+                        <Text id="nomUn" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
                         <Text id="sousTitreJoueur" layoutX="10.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " wrappingWidth="133.82896327972412" />
-                        <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons restants : " wrappingWidth="133.82896327972412" />
+                        <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons : " wrappingWidth="133.82896327972412" />
                      </children>
                   </Pane>
                    <Pane prefHeight="147.0" prefWidth="150.0">
                        <children>
                            <Circle fill="WHITE" layoutX="75.0" layoutY="54.0" radius="39.0" stroke="#d3d3d3" strokeType="INSIDE" />
-                           <Text id="nomJoueur" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
+                           <Text id="nomDeux" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
                            <Text id="sousTitreJoueur" layoutX="10.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " wrappingWidth="133.82896327972412" />
-                           <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons restants : " wrappingWidth="133.82896327972412" />
+                           <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons : " wrappingWidth="133.82896327972412" />
                        </children>
                    </Pane>
                    <Pane prefHeight="147.0" prefWidth="150.0">
                        <children>
                            <Circle fill="WHITE" layoutX="75.0" layoutY="54.0" radius="39.0" stroke="#d3d3d3" strokeType="INSIDE" />
-                           <Text id="nomJoueur" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
+                           <Text id="nomTrois" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
                            <Text id="sousTitreJoueur" layoutX="10.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " wrappingWidth="133.82896327972412" />
-                           <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons restants : " wrappingWidth="133.82896327972412" />
+                           <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons : " wrappingWidth="133.82896327972412" />
                        </children>
                    </Pane>
                    <Pane prefHeight="147.0" prefWidth="150.0">
                        <children>
                            <Circle fill="WHITE" layoutX="75.0" layoutY="54.0" radius="39.0" stroke="#d3d3d3" strokeType="INSIDE" />
-                           <Text id="nomJoueur" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
+                           <Text id="nomQuatre" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
                            <Text id="sousTitreJoueur" layoutX="10.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " wrappingWidth="133.82896327972412" />
-                           <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons restants : " wrappingWidth="133.82896327972412" />
+                           <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons : " wrappingWidth="133.82896327972412" />
                        </children>
                    </Pane>
                </children>
