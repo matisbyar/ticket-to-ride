@@ -1,10 +1,14 @@
 package fr.umontpellier.iut.vues;
 
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +27,22 @@ public class VueChoixJoueurs extends Stage {
     public ObservableList<String> nomsJoueursProperty() {
         return nomsJoueurs;
     }
+
+    @FXML
+    private TextField rose;
+    @FXML
+    private TextField jaune;
+    @FXML
+    private TextField vert;
+    @FXML
+    private TextField rouge;
+    @FXML
+    private TextField bleu;
+
+    @FXML
+    private Button regles;
+    @FXML
+    private Button jouer;
 
     public List<String> getNomsJoueurs() {
         return nomsJoueurs;
@@ -76,7 +96,13 @@ public class VueChoixJoueurs extends Stage {
      * Retourne le nombre de participants à la partie que l'utilisateur a renseigné
      */
     protected int getNombreDeJoueurs() {
-        throw new RuntimeException("Methode à implémenter");
+        int nombreDeJoueurs = 0;
+        if (!rose.getText().isEmpty()) nombreDeJoueurs++;
+        if (!jaune.getText().isEmpty()) nombreDeJoueurs++;
+        if (!vert.getText().isEmpty()) nombreDeJoueurs++;
+        if (!rouge.getText().isEmpty()) nombreDeJoueurs++;
+        if (!bleu.getText().isEmpty()) nombreDeJoueurs++;
+        return nombreDeJoueurs;
     }
 
     /**
@@ -84,7 +110,22 @@ public class VueChoixJoueurs extends Stage {
      * @param playerNumber : le numéro du participant
      */
     protected String getJoueurParNumero(int playerNumber) {
-        throw new RuntimeException("Methode à implémenter");
+        return nomsJoueurs.get(playerNumber - 1);
     }
 
+    @FXML
+    public void clickJouer() {
+        if (!rose.getText().isEmpty()) nomsJoueurs.add(rose.getText());
+        if (!jaune.getText().isEmpty()) nomsJoueurs.add(jaune.getText());
+        if (!vert.getText().isEmpty()) nomsJoueurs.add(vert.getText());
+        if (!rouge.getText().isEmpty()) nomsJoueurs.add(rouge.getText());
+        if (!bleu.getText().isEmpty()) nomsJoueurs.add(bleu.getText());
+        setListeDesNomsDeJoueurs();
+    }
+
+    @FXML
+    public void clickRegles() {
+        VueRegles regles = new VueRegles();
+        regles.show();
+    }
 }

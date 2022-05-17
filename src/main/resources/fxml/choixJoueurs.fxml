@@ -16,16 +16,16 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root height="700.0" maxHeight="700.0" maxWidth="1080.0" minHeight="700.0" minWidth="1080.0" resizable="false" type="Stage" width="1080.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alwaysOnTop="true" height="700.0" maxHeight="700.0" maxWidth="1080.0" minHeight="700.0" minWidth="1080.0" resizable="false" type="Stage" width="1080.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0">
             <children>
                <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0" style="-fx-background-color: #C8D1D6;" stylesheets="@../css/style.css">
                   <top>
-                     <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
                         <children>
-                           <Text layoutX="75.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue dans Les Aventuriers du Rail!" textAlignment="CENTER">
+                           <Text layoutX="75.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue dans Les Aventuriers du Rail!" textAlignment="CENTER">
                               <font>
                                  <Font name="Georgia Bold Italic" size="44.0" />
                               </font>
@@ -34,11 +34,11 @@
                      </Pane>
                   </top>
                   <center>
-                     <Pane prefHeight="450.0" prefWidth="1030.0" style="-fx-border-radius: 20px; -fx-background-color: white; -fx-background-radius: 20px;" BorderPane.alignment="CENTER">
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1030.0" style="-fx-border-radius: 20px; -fx-background-color: white; -fx-background-radius: 20px;" BorderPane.alignment="CENTER">
                         <children>
-                           <BorderPane prefHeight="450.0" prefWidth="1030.0">
+                           <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1030.0">
                               <top>
-                                 <VBox alignment="CENTER" prefHeight="40.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
+                                 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
                                     <children>
                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Entrez vos noms.">
                                           <font>
@@ -56,9 +56,9 @@
                                  </VBox>
                               </top>
                               <center>
-                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="1030.0" spacing="20.0" BorderPane.alignment="CENTER">
                                     <children>
-                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -76,14 +76,14 @@
                                                    <Font name="Georgia Bold" size="20.0" />
                                                 </font>
                                              </Text>
-                                             <TextField promptText="Entrez le nom du joueur...">
+                                             <TextField fx:id="rose" promptText="Entrez le nom du joueur...">
                                                 <VBox.margin>
                                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                                 </VBox.margin>
                                              </TextField>
                                           </children>
                                        </VBox>
-                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -101,14 +101,14 @@
                                                    <Font name="Georgia Bold" size="20.0" />
                                                 </font>
                                              </Text>
-                                             <TextField promptText="Entrez le nom du joueur...">
+                                             <TextField fx:id="jaune" promptText="Entrez le nom du joueur...">
                                                 <VBox.margin>
                                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                                 </VBox.margin>
                                              </TextField>
                                           </children>
                                        </VBox>
-                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -126,14 +126,14 @@
                                                    <Font name="Georgia Bold" size="20.0" />
                                                 </font>
                                              </Text>
-                                             <TextField promptText="Entrez le nom du joueur...">
+                                             <TextField fx:id="vert" promptText="Entrez le nom du joueur...">
                                                 <VBox.margin>
                                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                                 </VBox.margin>
                                              </TextField>
                                           </children>
                                        </VBox>
-                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -151,14 +151,14 @@
                                                    <Font name="Georgia Bold" size="20.0" />
                                                 </font>
                                              </Text>
-                                             <TextField promptText="Entrez le nom du joueur...">
+                                             <TextField fx:id="rouge" promptText="Entrez le nom du joueur...">
                                                 <VBox.margin>
                                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                                 </VBox.margin>
                                              </TextField>
                                           </children>
                                        </VBox>
-                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
@@ -176,7 +176,7 @@
                                                    <Font name="Georgia Bold" size="20.0" />
                                                 </font>
                                              </Text>
-                                             <TextField promptText="Entrez le nom du joueur...">
+                                             <TextField fx:id="bleu" promptText="Entrez le nom du joueur...">
                                                 <VBox.margin>
                                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                                 </VBox.margin>
@@ -191,22 +191,22 @@
                      </Pane>
                   </center>
                   <left>
-                     <Pane prefHeight="200.0" prefWidth="25.0" BorderPane.alignment="CENTER" />
+                     <Pane prefHeight="450.0" prefWidth="25.0" BorderPane.alignment="CENTER" />
                   </left>
                   <right>
-                     <Pane prefHeight="200.0" prefWidth="25.0" BorderPane.alignment="CENTER" />
+                     <Pane prefHeight="450.0" prefWidth="25.0" BorderPane.alignment="CENTER" />
                   </right>
                   <bottom>
-                     <Pane prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                     <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
                         <children>
-                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1080.0" spacing="10.0">
+                           <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="1080.0" spacing="50.0">
                               <children>
-                                 <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="400.0" style="-fx-background-radius: 20px; -fx-background-color: white;" text="Les règles">
+                                 <Button fx:id="regles" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickRegles" prefHeight="60.0" prefWidth="400.0" style="-fx-background-radius: 20px; -fx-background-color: white;" text="Les règles">
                                     <font>
                                        <Font size="30.0" />
                                     </font>
                                  </Button>
-                                 <Button mnemonicParsing="false" prefWidth="400.0" style="-fx-background-radius: 20px; -fx-background-color: dodgerblue;" text="Jouer !" textFill="WHITE">
+                                 <Button fx:id="jouer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickJouer" prefHeight="60.0" prefWidth="400.0" style="-fx-background-radius: 20px; -fx-background-color: dodgerblue;" text="Jouer !" textFill="WHITE">
                                     <font>
                                        <Font size="30.0" />
                                     </font>
