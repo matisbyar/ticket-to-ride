@@ -17,11 +17,14 @@ public class VueDuJeu extends Pane {
     private IJeu jeu;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
+    private VueRegles regles;
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs();
+        regles = new VueRegles();
+        getChildren().add(plateau);
         getChildren().add(autresJoueurs);
     }
 
