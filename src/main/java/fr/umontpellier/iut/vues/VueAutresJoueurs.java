@@ -20,5 +20,6 @@ public class VueAutresJoueurs extends VBox {
 
     public VueAutresJoueurs(List<Joueur> listeJoueurs) {
         for (Joueur joueur : listeJoueurs) getChildren().add(new VueAutresJoueursMini(joueur));
+        this.setSpacing(20.0);
     }
 }

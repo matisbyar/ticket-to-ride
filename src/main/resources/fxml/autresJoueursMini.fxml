@@ -9,7 +9,7 @@
       <Pane prefHeight="147.0" prefWidth="150.0">
          <children>
             <Circle fill="WHITE" layoutX="75.0" layoutY="54.0" radius="39.0" stroke="#d3d3d3" strokeType="INSIDE" />
-            <Text id="nom" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
+            <Text id="nom" fx:id="nom" layoutX="10.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" textAlignment="CENTER" />
             <Text id="sousTitreJoueur" layoutX="10.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " wrappingWidth="133.82896327972412" />
             <Text id="sousTitreJoueur" layoutX="10.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wagons : " wrappingWidth="133.82896327972412" />
          </children>

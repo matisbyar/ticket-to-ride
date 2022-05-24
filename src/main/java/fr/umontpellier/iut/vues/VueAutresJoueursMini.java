@@ -3,26 +3,30 @@ package fr.umontpellier.iut.vues;
 import fr.umontpellier.iut.rails.Joueur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class VueAutresJoueursMini extends Pane {
+public class VueAutresJoueursMini extends VBox {
 
-    @FXML
-    private Label nom;
+    private Image image;
+    private ImageView avatar;
+    private Label nom, score, wagons;
 
     public VueAutresJoueursMini(Joueur j) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/autresJoueursMini.fxml"));
-            loader.setRoot(this);
-            loader.setController(this);
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        nom = new Label();
-        nom.setText(j.getNom());
+        this.setSpacing(5.0);
+
+        //avatar = new ImageView("ressources/images/images/avatar-BLEU.png");
+        nom = new Label(j.getNom());
+        score = new Label("Score : " + j.getScore());
+        wagons = new Label("Wagons : " + j.getNbWagons());
+
+        nom.setStyle("-fx-font-weight: bold");
+
+        this.getChildren().addAll(nom, score, wagons);
     }
 }
