@@ -3,6 +3,7 @@ package fr.umontpellier.iut.vues;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -13,23 +14,10 @@ import java.io.IOException;
  *
  * On y définit les bindings sur le joueur courant, ainsi que le listener à exécuter lorsque ce joueur change
  */
-public class VueAutresJoueurs extends Pane {
+public class VueAutresJoueurs extends VBox {
 
-    @FXML
-    private Text nomUn;
-    private Text nomDeux;
-    private Text nomTrois;
-    private Text nomQuatre;
-
-    public VueAutresJoueurs() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/autresJoueurs.fxml"));
-            loader.setRoot(this);
-            loader.setController(this);
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public VueAutresJoueurs(int nbJoueurs) {
+        for (int i = 0; i < 3; i++) getChildren().add(new VueAutresJoueursMini());
     }
 
 

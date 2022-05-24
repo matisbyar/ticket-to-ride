@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -15,6 +16,7 @@ import javafx.scene.layout.Pane;
 public class VueDuJeu extends Pane {
 
     private IJeu jeu;
+    private BorderPane borderPane;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
     private VueRegles regles;
@@ -22,10 +24,14 @@ public class VueDuJeu extends Pane {
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
-        autresJoueurs = new VueAutresJoueurs();
+        autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs().size());
         regles = new VueRegles();
-        getChildren().add(plateau);
-        getChildren().add(autresJoueurs);
+
+        borderPane = new BorderPane();
+        borderPane.setCenter(plateau);
+        borderPane.setRight(autresJoueurs);
+
+        getChildren().add(borderPane);
     }
 
     public IJeu getJeu() {
@@ -35,5 +41,4 @@ public class VueDuJeu extends Pane {
     public void creerBindings() {
 
     }
-
 }
