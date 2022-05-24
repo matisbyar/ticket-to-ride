@@ -24,7 +24,7 @@ public class VueDuJeu extends Pane {
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
-        autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs().size());
+        autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
         regles = new VueRegles();
 
         borderPane = new BorderPane();

@@ -1,5 +1,6 @@
 package fr.umontpellier.iut.vues;
 
+import fr.umontpellier.iut.rails.Joueur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -7,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Cette classe présente les éléments des joueurs autres que le joueur courant,
@@ -16,9 +18,7 @@ import java.io.IOException;
  */
 public class VueAutresJoueurs extends VBox {
 
-    public VueAutresJoueurs(int nbJoueurs) {
-        for (int i = 0; i < 3; i++) getChildren().add(new VueAutresJoueursMini());
+    public VueAutresJoueurs(List<Joueur> listeJoueurs) {
+        for (Joueur joueur : listeJoueurs) getChildren().add(new VueAutresJoueursMini(joueur));
     }
-
-
 }
