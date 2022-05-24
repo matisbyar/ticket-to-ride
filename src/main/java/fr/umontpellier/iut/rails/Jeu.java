@@ -23,7 +23,7 @@ public class Jeu extends Task<Void> implements IJeu {
     /**
      * Cartes de la pioche face visible (normalement il y a 5 cartes face visible)
      */
-    private ObservableList<CouleurWagon> cartesWagonVisibles;
+    private ObservableList<Destinations> cartesWagonVisibles;
     /**
      * Une information qui précise au joueur courant ce qu'il doit faire
      */
@@ -48,11 +48,11 @@ public class Jeu extends Task<Void> implements IJeu {
     /**
      * Pile de pioche (face cachée)
      */
-    private List<CouleurWagon> pileCartesWagon;
+    private List<Destinations> pileCartesWagon;
     /**
      * Pile de cartes qui ont été défaussée au cours de la partie
      */
-    private List<CouleurWagon> defausseCartesWagon;
+    private List<Destinations> defausseCartesWagon;
     /**
      * Pile des cartes "Destination" (uniquement les destinations "courtes", les
      * destinations "longues" sont distribuées au début de la partie et ne peuvent
@@ -77,12 +77,12 @@ public class Jeu extends Task<Void> implements IJeu {
         pileCartesWagon = new ArrayList<>();
         cartesWagonVisibles = FXCollections.observableArrayList();
         defausseCartesWagon = new ArrayList<>();
-        for (CouleurWagon c : CouleurWagon.getCouleursSimples()) {
+        for (Destinations c : Destinations.getCouleursSimples()) {
             for (int i = 0; i < 12; i++)
                 pileCartesWagon.add(c);
         }
         for (int i = 0; i < 14; i++) {
-            pileCartesWagon.add(CouleurWagon.LOCOMOTIVE);
+            pileCartesWagon.add(Destinations.LOCOMOTIVE);
         }
         Collections.shuffle(pileCartesWagon);
 
@@ -131,19 +131,19 @@ public class Jeu extends Task<Void> implements IJeu {
         return routes;
     }
 
-    public List<CouleurWagon> getPileCartesWagon() {
+    public List<Destinations> getPileCartesWagon() {
         return pileCartesWagon;
     }
 
-    public List<CouleurWagon> getCartesWagonVisibles() {
+    public List<Destinations> getCartesWagonVisibles() {
         return cartesWagonVisibles;
     }
 
-    public ObservableList<CouleurWagon> cartesWagonVisiblesProperty() {
+    public ObservableList<Destinations> cartesWagonVisiblesProperty() {
         return cartesWagonVisibles;
     }
 
-    public List<CouleurWagon> getDefausseCartesWagon() {
+    public List<Destinations> getDefausseCartesWagon() {
         return defausseCartesWagon;
     }
 
@@ -227,7 +227,7 @@ public class Jeu extends Task<Void> implements IJeu {
      *
      * @param c carte à défausser
      */
-    public void defausserCarteWagon(CouleurWagon c) {
+    public void defausserCarteWagon(Destinations c) {
         defausseCartesWagon.add(c);
         remplirCartesWagonVisibles(); // si jamais il n'y avait pas assez de cartes disponibles
     }
@@ -239,7 +239,7 @@ public class Jeu extends Task<Void> implements IJeu {
      *
      * @return la carte qui a été piochée (ou null si aucune carte disponible)
      */
-    public CouleurWagon piocherCarteWagon() {
+    public Destinations piocherCarteWagon() {
         if (pileCartesWagon.isEmpty()) {
             if (defausseCartesWagon.size() > 0) {
                 pileCartesWagon.addAll(defausseCartesWagon);
@@ -257,7 +257,7 @@ public class Jeu extends Task<Void> implements IJeu {
      * Si une carte a été retirée, la pile de cartes wagons visibles est recomplétée
      * (remise à 5, éventuellement remélangée si 3 locomotives visibles)
      */
-    public void retirerCarteWagonVisible(CouleurWagon c) {
+    public void retirerCarteWagonVisible(Destinations c) {
         if (cartesWagonVisibles.remove(c)) {
             remplirCartesWagonVisibles();
         }
@@ -311,20 +311,20 @@ public class Jeu extends Task<Void> implements IJeu {
      */
     public void remplirCartesWagonVisibles() {
         while (cartesWagonVisibles.size() < 5) {
-            CouleurWagon c = piocherCarteWagon();
+            Destinations c = piocherCarteWagon();
             if (c == null)
                 break; // plus aucune carte disponible à piocher
             cartesWagonVisibles.add(c);
         }
 
-        if (Collections.frequency(cartesWagonVisibles, CouleurWagon.LOCOMOTIVE) >= 3) {
+        if (Collections.frequency(cartesWagonVisibles, Destinations.LOCOMOTIVE) >= 3) {
             // 3 locomotives -> défausser les 5 cartes et piocher 5 nouvelles
             // mais seulement s'il y a assez d'autres cartes pour avoir 5 cartes sans 3
             // locomotives
             if (cartesWagonVisibles.size() + pileCartesWagon.size() + defausseCartesWagon.size()
-                    - Collections.frequency(cartesWagonVisibles, CouleurWagon.LOCOMOTIVE)
-                    - Collections.frequency(pileCartesWagon, CouleurWagon.LOCOMOTIVE)
-                    - Collections.frequency(defausseCartesWagon, CouleurWagon.LOCOMOTIVE) >= 3) {
+                    - Collections.frequency(cartesWagonVisibles, Destinations.LOCOMOTIVE)
+                    - Collections.frequency(pileCartesWagon, Destinations.LOCOMOTIVE)
+                    - Collections.frequency(defausseCartesWagon, Destinations.LOCOMOTIVE) >= 3) {
                 defausseCartesWagon.addAll(cartesWagonVisibles.stream().toList());
                 cartesWagonVisibles.clear();
                 remplirCartesWagonVisibles();

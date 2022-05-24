@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.ICouleurWagon;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 /**
@@ -11,9 +12,12 @@ import javafx.scene.layout.Pane;
 public class VueCarteWagon extends Pane {
 
     private ICouleurWagon couleurWagon;
+    private Label couleur;
 
     public VueCarteWagon(ICouleurWagon couleurWagon) {
         this.couleurWagon = couleurWagon;
+        couleur = new Label(couleurWagon.toString());
+        this.getChildren().add(couleur);
     }
 
     public ICouleurWagon getCouleurWagon() {

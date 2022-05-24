@@ -22,7 +22,7 @@ public class Route implements IRoute {
     /**
      * Couleur pour capturer la route (éventuellement GRIS mais pas LOCOMOTIVE)
      */
-    private CouleurWagon couleur;
+    private Destinations couleur;
     /**
      * Joueur qui a capturé la route (`null` si la route est encore à prendre)
      */
@@ -34,7 +34,7 @@ public class Route implements IRoute {
      */
     private String nom;
 
-    public Route(Ville ville1, Ville ville2, int longueur, CouleurWagon couleur) {
+    public Route(Ville ville1, Ville ville2, int longueur, Destinations couleur) {
         this.ville1 = ville1;
         this.ville2 = ville2;
         this.nom = ville1.getNom() + " - " + ville2.getNom();
@@ -55,7 +55,7 @@ public class Route implements IRoute {
         return longueur;
     }
 
-    public CouleurWagon getCouleur() {
+    public Destinations getCouleur() {
         return couleur;
     }
 

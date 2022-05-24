@@ -3,6 +3,7 @@ package fr.umontpellier.iut.vues;
 import fr.umontpellier.iut.IJeu;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -17,6 +18,7 @@ public class VueDuJeu extends Pane {
 
     private IJeu jeu;
     private BorderPane borderPane;
+    private VBox vBoxgauche;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
     private VueRegles regles;
@@ -30,6 +32,20 @@ public class VueDuJeu extends Pane {
         borderPane = new BorderPane();
         borderPane.setCenter(plateau);
         borderPane.setRight(autresJoueurs);
+
+        /*
+        for (int i = 0; i < jeu.getJoueurs().size(); i++) {
+
+            borderPane.setLeft()
+        }
+        */
+
+        vBoxgauche = new VBox();
+        vBoxgauche.getChildren().add(new VueJoueurCourant(jeu.getJoueurs().get(0)));
+        vBoxgauche.getChildren().add(new VueCartesWagonJoueur(jeu.getJoueurs().get(0).getCartesWagon()));
+
+
+        borderPane.setLeft(vBoxgauche);
 
         getChildren().add(borderPane);
     }

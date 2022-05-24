@@ -1,9 +1,9 @@
 package fr.umontpellier.iut;
 
-import fr.umontpellier.iut.rails.CouleurWagon;
+import fr.umontpellier.iut.rails.Destinations;
 
 public interface ICouleurWagon {
     static ICouleurWagon[] values() {
-        return CouleurWagon.values();
+        return Destinations.values();
     }
 }

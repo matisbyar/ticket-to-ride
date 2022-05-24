@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IDestination;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 /**
@@ -11,9 +12,12 @@ import javafx.scene.layout.Pane;
 public class VueDestination extends Pane {
 
     private IDestination destination;
+    private Label nom;
 
     public VueDestination(IDestination destination) {
         this.destination = destination;
+        nom = new Label(destination.getNom());
+        this.getChildren().add(nom);
     }
 
     public IDestination getDestination() {

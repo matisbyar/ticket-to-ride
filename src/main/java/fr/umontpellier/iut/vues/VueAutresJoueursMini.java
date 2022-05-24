@@ -25,7 +25,8 @@ public class VueAutresJoueursMini extends VBox {
         score = new Label("Score : " + j.getScore());
         wagons = new Label("Wagons : " + j.getNbWagons());
 
-        nom.setStyle("-fx-font-weight: bold");
+        nom.setStyle("-fx-font-size: 16");
+        score.setStyle("-fx-font-family: Courier");
 
         this.getChildren().addAll(nom, score, wagons);
     }

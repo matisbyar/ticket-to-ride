@@ -9,7 +9,7 @@ import java.util.List;
 public interface IJeu {
 
     ObjectProperty<String> instructionProperty();
-    ObservableList<CouleurWagon> cartesWagonVisiblesProperty();
+    ObservableList<Destinations> cartesWagonVisiblesProperty();
     ObservableList<Destination> destinationsInitialesProperty();
     ObjectProperty<IJoueur> joueurCourantProperty();
 

@@ -20,7 +20,7 @@ public class Joueur implements IJoueur {
     /**
      * Liste des cartes que le joueur a en main
      */
-    private ObservableList<CouleurWagon> cartesWagon;
+    private ObservableList<Destinations> cartesWagon;
     /**
      * Nombre de wagons que le joueur peut encore poser sur le plateau
      */
@@ -38,7 +38,7 @@ public class Joueur implements IJoueur {
      * Liste temporaire de cartes wagon que le joueur est en train de jouer pour
      * payer la capture d'une route ou la construction d'une gare
      */
-    private List<CouleurWagon> cartesWagonPosees;
+    private List<Destinations> cartesWagonPosees;
     /**
      * Jeu auquel le joueur est rattaché
      */
@@ -70,7 +70,7 @@ public class Joueur implements IJoueur {
     public ObservableList<Destination> destinationsProperty() {
         return destinations;
     }
-    public ObservableList<CouleurWagon> cartesWagonProperty() { return cartesWagon; }
+    public ObservableList<Destinations> cartesWagonProperty() { return cartesWagon; }
     public IntegerProperty nbWagonsProperty() {
         return nbWagons;
     }
@@ -110,11 +110,11 @@ public class Joueur implements IJoueur {
         return destinations;
     }
 
-    public List<CouleurWagon> getCartesWagon() {
+    public List<Destinations> getCartesWagon() {
         return cartesWagon;
     }
 
-    public List<CouleurWagon> getCartesWagonPosees() {
+    public List<Destinations> getCartesWagonPosees() {
         return cartesWagonPosees;
     }
 
@@ -124,7 +124,7 @@ public class Joueur implements IJoueur {
      * @param c une couleur de carte wagon
      * @return true si le joueur a une carte de la couleur indiquée
      */
-    public boolean hasCarteWagon(CouleurWagon c) {
+    public boolean hasCarteWagon(Destinations c) {
         return cartesWagon.contains(c);
     }
 
@@ -133,7 +133,7 @@ public class Joueur implements IJoueur {
      *
      * @param c
      */
-    public void poserCarteWagon(CouleurWagon c) {
+    public void poserCarteWagon(Destinations c) {
         if (cartesWagon.remove(c)) {
             cartesWagonPosees.add(c);
         }
@@ -239,7 +239,7 @@ public class Joueur implements IJoueur {
      *
      * @param c la carte à ajouter
      */
-    public void ajouterCarteWagon(CouleurWagon c) {
+    public void ajouterCarteWagon(Destinations c) {
         cartesWagon.add(c);
     }
 
@@ -322,13 +322,13 @@ public class Joueur implements IJoueur {
 
         // prendre des cartes wagon
         Set<String> couleurs = new HashSet<>();
-        for (CouleurWagon c : jeu.getCartesWagonVisibles()) {
+        for (Destinations c : jeu.getCartesWagonVisibles()) {
             optionsPossibles.add(c.name());
             couleurs.add(c.name());
         }
         if (!jeu.pileCartesWagonEstVide()) {
-            optionsPossibles.add(CouleurWagon.GRIS.name());
-            couleurs.add(CouleurWagon.GRIS.name());
+            optionsPossibles.add(Destinations.GRIS.name());
+            couleurs.add(Destinations.GRIS.name());
         }
 
         // capturer une route
@@ -343,7 +343,7 @@ public class Joueur implements IJoueur {
 
         // construire une ville
         HashMap<String, Ville> villes = new HashMap<>();
-        if (nbGares > 0 && peutPayerCartesWagon(4 - nbGares, CouleurWagon.GRIS, 0)) {
+        if (nbGares > 0 && peutPayerCartesWagon(4 - nbGares, Destinations.GRIS, 0)) {
             for (Ville ville : jeu.getVilles()) {
                 if (ville.getProprietaire() == null) {
                     optionsPossibles.add(ville.getNom());
@@ -356,7 +356,7 @@ public class Joueur implements IJoueur {
         if (choix.equals("destinations")) {
             prendreDestinations();
         } else if (couleurs.contains(choix)) {
-            prendreCartesWagons(CouleurWagon.valueOf(choix));
+            prendreCartesWagons(Destinations.valueOf(choix));
         } else if (routes.containsKey(choix)) {
             capturerRoute(routes.get(choix));
         } else if (villes.containsKey(choix)) {
@@ -370,34 +370,34 @@ public class Joueur implements IJoueur {
      * @param couleur couleur de la première carte à prendre (GRIS si la première
      *                carte est prise dans la pioche)
      */
-    private void prendreCartesWagons(CouleurWagon couleur) {
-        if (couleur == CouleurWagon.GRIS) {
+    private void prendreCartesWagons(Destinations couleur) {
+        if (couleur == Destinations.GRIS) {
             ajouterCarteWagon(jeu.piocherCarteWagon());
         } else {
             ajouterCarteWagon(couleur);
             jeu.retirerCarteWagonVisible(couleur);
         }
 
-        if (couleur != CouleurWagon.LOCOMOTIVE) {
+        if (couleur != Destinations.LOCOMOTIVE) {
             // le joueur peut prendre une autre carte (pas Locomotive)
             List<String> choixPossibles = new ArrayList<>();
-            for (CouleurWagon c : jeu.getCartesWagonVisibles()) {
-                if (c != CouleurWagon.LOCOMOTIVE) {
+            for (Destinations c : jeu.getCartesWagonVisibles()) {
+                if (c != Destinations.LOCOMOTIVE) {
                     choixPossibles.add(c.name());
                 }
             }
             if (!jeu.pileCartesWagonEstVide()) {
-                choixPossibles.add(CouleurWagon.GRIS.name());
+                choixPossibles.add(Destinations.GRIS.name());
             }
 
             String choix = choisir(
                     "Vous pouvez prendre une autre carte wagon",
                     choixPossibles,
                     new ArrayList<>(), true);
-            if (choix.equals(CouleurWagon.GRIS.name())) {
+            if (choix.equals(Destinations.GRIS.name())) {
                 ajouterCarteWagon(jeu.piocherCarteWagon());
             } else if (choixPossibles.contains(choix)) {
-                couleur = CouleurWagon.valueOf(choix);
+                couleur = Destinations.valueOf(choix);
                 ajouterCarteWagon(couleur);
                 jeu.retirerCarteWagonVisible(couleur);
             }
@@ -421,10 +421,10 @@ public class Joueur implements IJoueur {
      * @param nbLocomotives nombre de locomotives supplémentaires demandées
      * @return
      */
-    public boolean peutPayerCartesWagon(int nbCouleur, CouleurWagon couleur, int nbLocomotives) {
-        Map<CouleurWagon, Integer> compteur = CouleurWagon.compteur(cartesWagon);
-        return compteur.get(CouleurWagon.LOCOMOTIVE) >= nbLocomotives
-                && compteur.get(couleur) + compteur.get(CouleurWagon.LOCOMOTIVE) >= nbCouleur + nbLocomotives;
+    public boolean peutPayerCartesWagon(int nbCouleur, Destinations couleur, int nbLocomotives) {
+        Map<Destinations, Integer> compteur = Destinations.compteur(cartesWagon);
+        return compteur.get(Destinations.LOCOMOTIVE) >= nbLocomotives
+                && compteur.get(couleur) + compteur.get(Destinations.LOCOMOTIVE) >= nbCouleur + nbLocomotives;
     }
 
     /**
@@ -439,25 +439,25 @@ public class Joueur implements IJoueur {
      * @param couleur
      * @param nbLocomotives
      */
-    public List<CouleurWagon> payerCartesWagon(int nbCouleur, CouleurWagon couleur, int nbLocomotives,
+    public List<Destinations> payerCartesWagon(int nbCouleur, Destinations couleur, int nbLocomotives,
                                                String instruction) {
         // Payer les locomotives en premier
         for (int i = 0; i < nbLocomotives; i++) {
-            cartesWagon.remove(CouleurWagon.LOCOMOTIVE);
-            cartesWagonPosees.add(CouleurWagon.LOCOMOTIVE);
+            cartesWagon.remove(Destinations.LOCOMOTIVE);
+            cartesWagonPosees.add(Destinations.LOCOMOTIVE);
         }
 
-        Map<CouleurWagon, Integer> compteur = CouleurWagon.compteur(cartesWagon);
+        Map<Destinations, Integer> compteur = Destinations.compteur(cartesWagon);
         while (nbCouleur > 0) {
             // il reste des cartes à payer
-            List<CouleurWagon> choixPossibles = new ArrayList<>();
-            if (compteur.get(CouleurWagon.LOCOMOTIVE) > 0) {
-                choixPossibles.add(CouleurWagon.LOCOMOTIVE);
+            List<Destinations> choixPossibles = new ArrayList<>();
+            if (compteur.get(Destinations.LOCOMOTIVE) > 0) {
+                choixPossibles.add(Destinations.LOCOMOTIVE);
             }
-            if (couleur == CouleurWagon.GRIS) {
-                for (CouleurWagon c : CouleurWagon.getCouleursSimples()) {
+            if (couleur == Destinations.GRIS) {
+                for (Destinations c : Destinations.getCouleursSimples()) {
                     if (compteur.get(c) > 0
-                            && compteur.get(c) + compteur.get(CouleurWagon.LOCOMOTIVE) >= nbCouleur) {
+                            && compteur.get(c) + compteur.get(Destinations.LOCOMOTIVE) >= nbCouleur) {
                         choixPossibles.add(c);
                     }
                 }
@@ -468,13 +468,13 @@ public class Joueur implements IJoueur {
             String choix = choisir(
                     instruction,
                     new ArrayList<>(choixPossibles.stream()
-                            .map(CouleurWagon::name)
+                            .map(Destinations::name)
                             .collect(Collectors.toList())),
                     new ArrayList<>(),
                     false);
-            CouleurWagon couleurChoisie = CouleurWagon.valueOf(choix);
+            Destinations couleurChoisie = Destinations.valueOf(choix);
 
-            if (couleur == CouleurWagon.GRIS && couleurChoisie != CouleurWagon.LOCOMOTIVE) {
+            if (couleur == Destinations.GRIS && couleurChoisie != Destinations.LOCOMOTIVE) {
                 couleur = couleurChoisie;
             }
 
@@ -563,11 +563,11 @@ public class Joueur implements IJoueur {
     private void construireGare(Ville ville) {
         int nbCartes = 4 - nbGares;
         if (nbCartes == 1) {
-            payerCartesWagon(4 - nbGares, CouleurWagon.GRIS, 0,
+            payerCartesWagon(4 - nbGares, Destinations.GRIS, 0,
                     String.format("Défaussez 1 carte wagon pour construire la gare à %s",
                             ville.getNom()));
         } else {
-            payerCartesWagon(4 - nbGares, CouleurWagon.GRIS, 0,
+            payerCartesWagon(4 - nbGares, Destinations.GRIS, 0,
                     String.format("Défaussez %d cartes wagon pour construire la gare à %s",
                             nbCartes, ville.getNom()));
         }

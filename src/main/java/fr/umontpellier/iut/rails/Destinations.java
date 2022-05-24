@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Représentation des couleurs du jeu utilisées pour les cartes wagon et les routes
  */
-public enum CouleurWagon implements ICouleurWagon {
+public enum Destinations implements ICouleurWagon {
     NOIR, BLANC, JAUNE, ROUGE, ORANGE, BLEU, VERT, ROSE, GRIS, LOCOMOTIVE;
 
     @Override
@@ -32,7 +32,7 @@ public enum CouleurWagon implements ICouleurWagon {
     /**
      * Renvoie la liste des couleurs "simples" c'est-à-dire sans LOCOMOTIVE ni GRIS
      */
-    public static ArrayList<CouleurWagon> getCouleursSimples() {
+    public static ArrayList<Destinations> getCouleursSimples() {
         return new ArrayList<>(List.of(NOIR, BLANC, JAUNE, ROUGE, ORANGE, BLEU, VERT, ROSE));
     }
 
@@ -47,21 +47,21 @@ public enum CouleurWagon implements ICouleurWagon {
      * @return un tableau associatif de la forme {@code {couleur: nombre
      *         d'éléments}}
      */
-    public static Map<CouleurWagon, Integer> compteur(List<CouleurWagon> couleurs) {
-        HashMap<CouleurWagon, Integer> c = new HashMap<>();
+    public static Map<Destinations, Integer> compteur(List<Destinations> couleurs) {
+        HashMap<Destinations, Integer> c = new HashMap<>();
         // initialisation
-        for (CouleurWagon couleur : CouleurWagon.values()) {
+        for (Destinations couleur : Destinations.values()) {
             c.put(couleur, 0);
         }
         // décompte des valeurs dans la liste `couleurs`
-        for (CouleurWagon couleur : couleurs) {
+        for (Destinations couleur : couleurs) {
             c.put(couleur, c.get(couleur) + 1);
         }
 
         // la valeur correspondant à GRIS est le max des autres valeurs hors LOCOMOTIVE
-        for (CouleurWagon couleur : CouleurWagon.values()) {
-            if (couleur != CouleurWagon.LOCOMOTIVE && couleur != CouleurWagon.GRIS) {
-                c.put(CouleurWagon.GRIS, Math.max(c.get(CouleurWagon.GRIS), c.get(couleur)));
+        for (Destinations couleur : Destinations.values()) {
+            if (couleur != Destinations.LOCOMOTIVE && couleur != Destinations.GRIS) {
+                c.put(Destinations.GRIS, Math.max(c.get(Destinations.GRIS), c.get(couleur)));
             }
         }
         return c;

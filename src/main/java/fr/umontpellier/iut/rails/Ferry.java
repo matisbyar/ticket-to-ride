@@ -6,7 +6,7 @@ public class Ferry extends Route {
      */
     private int nbLocomotives;
 
-    public Ferry(Ville ville1, Ville ville2, int longueur, CouleurWagon couleur, int nbLocomotives) {
+    public Ferry(Ville ville1, Ville ville2, int longueur, Destinations couleur, int nbLocomotives) {
         super(ville1, ville2, longueur, couleur);
         this.nbLocomotives = nbLocomotives;
     }
