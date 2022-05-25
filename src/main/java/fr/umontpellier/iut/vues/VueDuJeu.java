@@ -1,7 +1,12 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
+import fr.umontpellier.iut.rails.Destination;
+import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -23,6 +28,9 @@ public class VueDuJeu extends Pane {
     private VueAutresJoueurs autresJoueurs;
     private VueRegles regles;
 
+    private ListChangeListener<Destination> destinationListener;
+    private HBox destinations;
+
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
@@ -33,12 +41,7 @@ public class VueDuJeu extends Pane {
         borderPane.setCenter(plateau);
         borderPane.setRight(autresJoueurs);
 
-        /*
-        for (int i = 0; i < jeu.getJoueurs().size(); i++) {
 
-            borderPane.setLeft()
-        }
-        */
 
         vBoxgauche = new VBox();
         vBoxgauche.getChildren().add(new VueJoueurCourant(jeu.getJoueurs().get(0)));
@@ -46,6 +49,7 @@ public class VueDuJeu extends Pane {
 
 
         borderPane.setLeft(vBoxgauche);
+        borderPane.setBottom(new VueChoix(this.getJeu()));
 
         getChildren().add(borderPane);
     }
