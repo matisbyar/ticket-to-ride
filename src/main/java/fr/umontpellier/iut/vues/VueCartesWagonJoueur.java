@@ -1,34 +1,50 @@
 package fr.umontpellier.iut.vues;
 
-import fr.umontpellier.iut.rails.Destinations;
-import javafx.scene.control.Label;
+import fr.umontpellier.iut.IJeu;
+import fr.umontpellier.iut.IJoueur;
+import fr.umontpellier.iut.rails.Destination;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.List;
+public class VueCartesWagonJoueur extends ScrollPane {
 
-public class VueCartesWagonJoueur extends VBox {
-    public ArrayList<VueCarteWagon> cartesWagon;
+    private IJeu jeu;
+    private IJoueur joueur;
 
-    private ScrollPane scrollPane;
-    private Label affichage;
+    public VueCartesWagonJoueur(IJeu jeu) {
+        this.jeu = jeu;
+        joueur = jeu.getJoueurs().get(0);
 
-    public VueCartesWagonJoueur(List<Destinations> listeCouleurWagon) {
-        this.scrollPane = new ScrollPane();
-        cartesWagon = new ArrayList<>();
-        for (Destinations couleurWagon: listeCouleurWagon) {
-            cartesWagon.add(new VueCarteWagon(couleurWagon));
-        }
+        ChangeListener<IJoueur> joueurListener = new ChangeListener<IJoueur>() {
+            @Override
+            public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
+                Platform.runLater(() -> {
+                    joueur = t1;
+                });
+            }
+        };
+        jeu.joueurCourantProperty().addListener(joueurListener);
 
-        affichage = new Label("Mes cartes wagons (" + cartesWagon.size() + ")");
-        this.getChildren().add(affichage);
-        for (VueCarteWagon vueCarte: cartesWagon) {
-            this.getChildren().add(vueCarte);
-        }
+        ListChangeListener<Destination> destinationsJoueurListener = new ListChangeListener<Destination>() {
+            @Override
+            public void onChanged(Change<? extends Destination> change) {
+                Platform.runLater(() -> {
+                    change.next();
+                    if (change.wasAdded()) {
+                        getChildren().add(new VueDestination(change.getAddedSubList().get(0)));
+                    }
+                    if (change.wasRemoved()) {
+                        for (Destination carte : change.getRemoved()) {
+                            getChildren().removeIf(vueDestination -> carte.getNom().equals(vueDestination.getId()));
+                        }
+                    }
+                });
+            }
+        };
+        joueur.destinationsProperty().addListener(destinationsJoueurListener);
     }
 
-    public ArrayList<VueCarteWagon> getCartesWagon() {
-        return cartesWagon;
-    }
 }

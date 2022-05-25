@@ -9,6 +9,7 @@ import java.util.List;
 public interface IJoueur {
 
     ObservableList<Destinations> cartesWagonProperty();
+    ObservableList<Destination> destinationsProperty();
 
     public static enum Couleur {
         JAUNE, ROUGE, BLEU, VERT, ROSE;

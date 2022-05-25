@@ -44,7 +44,6 @@ public class VueChoix extends HBox {
                     if (change.wasRemoved()) {
                         for (Destination carte : change.getRemoved()) {
                             cartesDestination.getChildren().removeIf(vueDestination -> carte.getNom().equals(vueDestination.getId()));
-                            
                         }
                     }
                 });
@@ -59,15 +58,6 @@ public class VueChoix extends HBox {
 
         getChildren().add(cartesDestination);
         getChildren().add(passer);
-    }
-
-    public Node trouveLabelDestination(IDestination destination) {
-        for (int i = 0; i < jeu.destinationsInitialesProperty().size(); i++) {
-            if (destination.getNom().equals(((IDestination) cartesDestination.getChildren().get(i)).getNom())) {
-                return cartesDestination.getChildren().get(i);
-            }
-        }
-        return null;
     }
 
     public void createBindings() {

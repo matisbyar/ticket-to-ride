@@ -45,11 +45,11 @@ public class VueDuJeu extends Pane {
 
         vBoxgauche = new VBox();
         vBoxgauche.getChildren().add(new VueJoueurCourant(jeu.getJoueurs().get(0), this.getJeu()));
-        vBoxgauche.getChildren().add(new VueCartesWagonJoueur(jeu.getJoueurs().get(0).getCartesWagon()));
+        vBoxgauche.getChildren().add(new VueCartesWagonJoueur(this.jeu));
 
 
         borderPane.setLeft(vBoxgauche);
-        borderPane.setBottom(new VueChoix(this.getJeu()));
+        borderPane.setBottom(new VueChoix(this.jeu));
 
         getChildren().add(borderPane);
     }
