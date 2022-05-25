@@ -1,7 +1,12 @@
 package fr.umontpellier.iut.vues;
 
+import fr.umontpellier.iut.IJeu;
+import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.rails.Joueur;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -13,11 +18,14 @@ import javafx.scene.layout.VBox;
  */
 public class VueJoueurCourant extends VBox {
 
+    private IJeu jeu;
     private Label nom, score, wagons, gares, statut, missions;
     private ObservableList<VueDestination> destinations;
+    public ChangeListener<IJoueur> changementJoueur;
 
-    public VueJoueurCourant(Joueur j) {
+    public VueJoueurCourant(Joueur j, IJeu jeu) {
         destinations = new SimpleListProperty<>();
+        this.jeu = jeu;
 
         nom = new Label(j.getNom());
         score = new Label("Score : " + j.getScore());
@@ -26,7 +34,23 @@ public class VueJoueurCourant extends VBox {
         statut = new Label("À vous de jouer !");
         missions = new Label("Mes missions (" + destinations.size() + ")");
 
+        creerBindings();
+
         this.getChildren().addAll(nom, score, wagons, gares, statut, missions, new VueDestinationsJoueur(j.getDestinations()));
     }
 
+    public void creerBindings() {
+        changementJoueur = new ChangeListener<IJoueur>() {
+            @Override
+            public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
+                Platform.runLater(() -> {
+                    nom.setText(t1.getNom());
+                    score.setText("Score : " + t1.getScore());
+                    wagons.setText("Wagons restants : " + t1.getNbWagons());
+                    gares.setText("Gares : " + t1.getNbGares());
+                });
+            }
+        };
+        jeu.joueurCourantProperty().addListener(changementJoueur);
+    }
 }

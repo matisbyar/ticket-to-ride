@@ -2,23 +2,17 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.rails.Destinations;
 import fr.umontpellier.iut.rails.Destination;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.ScrollPane;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VueDestinationsJoueur extends Pane {
-    public ArrayList<VueDestination> cartesDestination;
+public class VueDestinationsJoueur extends ScrollPane {
+    List<VueDestination>
 
 
     public VueDestinationsJoueur(List<Destination> listeDestinations) {
-        cartesDestination = new ArrayList<>();
-        for (Destination destinations: listeDestinations) {
-            cartesDestination.add(new VueDestination(destinations));
-        }
-        for (VueDestination vueCarte: cartesDestination) {
-            this.getChildren().add(vueCarte);
-        }
+        this.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
     }
 
     public ArrayList<VueDestination> getCartesDestination() {
