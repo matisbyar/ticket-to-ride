@@ -42,7 +42,10 @@ public class VueChoix extends HBox {
                         cartesDestination.getChildren().add(new VueDestination(change.getAddedSubList().get(0)));
                     }
                     if (change.wasRemoved()) {
-
+                        for (Destination carte : change.getRemoved()) {
+                            cartesDestination.getChildren().removeIf(vueDestination -> carte.getNom().equals(vueDestination.getId()));
+                            
+                        }
                     }
                 });
             }
@@ -58,10 +61,10 @@ public class VueChoix extends HBox {
         getChildren().add(passer);
     }
 
-    public Button trouveLabelDestination(IDestination destination) {
+    public Node trouveLabelDestination(IDestination destination) {
         for (int i = 0; i < jeu.destinationsInitialesProperty().size(); i++) {
-            if (destination.getNom().equals(cartesDestination.getChildren().get(i).toString())) {
-
+            if (destination.getNom().equals(((IDestination) cartesDestination.getChildren().get(i)).getNom())) {
+                return cartesDestination.getChildren().get(i);
             }
         }
         return null;
