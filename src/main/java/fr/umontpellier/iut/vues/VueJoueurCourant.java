@@ -4,12 +4,10 @@ import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.rails.Joueur;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -20,27 +18,25 @@ import javafx.scene.layout.VBox;
 public class VueJoueurCourant extends VBox {
 
     private IJeu jeu;
+    private IJoueur joueur;
     private Label nom, score, wagons, gares, statut, mesMissions, mesCartesWagon;
-    private ScrollPane panneauMissions, panneauCartesWagon;
-    private ObservableList<VueDestination> destinations;
     public ChangeListener<IJoueur> changementJoueur;
 
     public VueJoueurCourant(Joueur j, IJeu jeu) {
-        destinations = new SimpleListProperty<>();
         this.jeu = jeu;
+        joueur = jeu.getJoueurs().get(0);
 
         nom = new Label(j.getNom());
-        score = new Label("Score : " + j.getScore());
-        wagons = new Label("Wagons restants : " + j.getNbWagons());
-        gares = new Label("Gares restantes : " + j.getNbGares());
+        score = new Label();
+        wagons = new Label();
+        gares = new Label();
         statut = new Label("À vous de jouer !");
-        mesMissions = new Label("Mes missions (" + destinations.size() + ")");
-        mesCartesWagon = new Label("Mes cartes wagon");
-        panneauMissions = new ScrollPane();
+        mesMissions = new Label();
+        mesCartesWagon = new Label();
 
         creerBindings();
 
-        this.getChildren().addAll(nom, score, wagons, gares, statut, mesMissions, panneauMissions, mesCartesWagon, new VueCartesWagonJoueur(jeu));
+        this.getChildren().addAll(nom, score, wagons, gares, statut, mesMissions, new VueDestinationsJoueur(jeu), mesCartesWagon, new VueCartesWagonJoueur(jeu));
     }
 
     public void creerBindings() {
@@ -48,10 +44,12 @@ public class VueJoueurCourant extends VBox {
             @Override
             public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
                 Platform.runLater(() -> {
+                    joueur = t1;
                     nom.setText(t1.getNom());
                     score.setText("Score : " + t1.getScore());
                     wagons.setText("Wagons restants : " + t1.getNbWagons());
                     gares.setText("Gares : " + t1.getNbGares());
+                    System.out.println(t1.getNom() + " aussi nommé " + jeu.joueurCourantProperty().get().getNom() + " joue.");
                 });
             }
         };
@@ -74,5 +72,11 @@ public class VueJoueurCourant extends VBox {
             }
         };
         jeu.joueurCourantProperty().get().destinationsProperty().addListener(cartesDestinationsListener);*/
+
+        //labelWagons.bind(Bindings.concat("Mes cartes wagon (" + jeu.joueurCourantProperty().get().getCartesWagon().size() + ")"));
+        Platform.runLater(() -> {
+            mesCartesWagon.textProperty().bind(Bindings.concat("Mes cartes wagon (" + jeu.joueurCourantProperty().get().getCartesWagon().size() + ")"));
+            mesMissions.textProperty().bind(Bindings.concat("Mes destinations (" + jeu.joueurCourantProperty().get().getDestinations().size() + ")"));
+        });
     }
 }

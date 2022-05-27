@@ -2,22 +2,16 @@
 
 #routes Rectangle {
     -fx-fill: "Transparent";
-    -fx-stroke: "black";
+    /*-fx-stroke: "black";*/
+    -fx-stroke: "blue";
+    -fx-stroke-width: 2;
 }
 
 #villes Circle {
     -fx-fill: "Transparent";
-    -fx-stroke: "black";
-}
-
-#nomUn, #nomDeux, #nomTrois, #nomQuatre {
-    -fx-font-family: "Georgia";
-    -fx-font-size: 16px;
-}
-
-#sousTitreJoueur {
-    -fx-font-family: "Andale Mono";
-    -fx-text-fill: #c5c5c5;
+    /*-fx-stroke: "black";*/
+    -fx-stroke: "red";
+    -fx-stroke-width: 2;
 }
 
 
