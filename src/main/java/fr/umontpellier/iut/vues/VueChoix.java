@@ -23,6 +23,8 @@ public class VueChoix extends BorderPane {
     private ListChangeListener<Destinations> cartesWagonsVisiblesListener;
 
     private Button passer;
+    private Button piocheDestination;
+    private Button piocheWagon;
 
     private HBox cartes;
     private HBox cartesDestination;
@@ -32,14 +34,26 @@ public class VueChoix extends BorderPane {
         instruction = new Label();
         cartesDestination = new HBox();
         cartesWagonsVisibles = new HBox();
-        cartes = new HBox();
+        cartes = new HBox(15);
         passer = new Button("Passer");
+        piocheDestination = new Button("Destinations");
+        piocheWagon = new Button("Wagons");
         this.jeu = jeu;
 
         createBindings();
 
+        piocheDestination.setOnAction(actionEvent -> {
+            jeu.uneDestinationAEtePiochee();
+        });
+
+        piocheWagon.setOnAction(actionEvent -> {
+            jeu.uneCarteWagonAEtePiochee();
+        });
+
         cartes.getChildren().add(cartesDestination);
+        cartes.getChildren().add(piocheDestination);
         cartes.getChildren().add(cartesWagonsVisibles);
+        cartes.getChildren().add(piocheWagon);
         this.setTop(instruction);
         this.setCenter(cartes);
         this.setRight(passer);
@@ -74,7 +88,12 @@ public class VueChoix extends BorderPane {
                     }
                     if (change.wasRemoved()) {
                         for (Destinations carte : change.getRemoved()) {
-                            cartesWagonsVisibles.getChildren().removeIf(vueCarteWagon -> carte.toString().equals(vueCarteWagon.getId()));
+                            for (int i = 0; i < cartesWagonsVisibles.getChildren().size(); i++) {
+                                if (carte.toString().equals(cartesWagonsVisibles.getChildren().get(i).getId())) {
+                                    cartesWagonsVisibles.getChildren().remove(i);
+                                    break;
+                                }
+                            }
                         }
                     }
                 });

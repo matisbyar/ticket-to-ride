@@ -19,7 +19,7 @@ public class VueCarteWagon extends Button {
         this.couleurWagon = couleurWagon;
         couleur = new Label(couleurWagon.toString());
         this.setText(couleur.getText());
-        this.setId(couleur.getText());
+        this.setId(couleurWagon.toString());
 
         this.setOnAction(actionEvent -> {
             System.out.println(couleur + " a été choisi.");
