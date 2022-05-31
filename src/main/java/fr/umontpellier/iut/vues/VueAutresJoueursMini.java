@@ -1,6 +1,10 @@
 package fr.umontpellier.iut.vues;
 
+import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.rails.Joueur;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -13,11 +17,15 @@ import java.io.IOException;
 
 public class VueAutresJoueursMini extends VBox {
 
+    private IJoueur joueur;
     private Image image;
     private ImageView avatar;
     private Label nom, score, wagons;
+    private ChangeListener<IJoueur> joueurListener;
 
-    public VueAutresJoueursMini(Joueur j) {
+    public VueAutresJoueursMini(IJoueur j) {
+        this.joueur = j;
+
         this.setSpacing(5.0);
 
         //avatar = new ImageView("ressources/images/images/avatar-BLEU.png");
@@ -29,5 +37,10 @@ public class VueAutresJoueursMini extends VBox {
         score.setStyle("-fx-font-family: Courier");
 
         this.getChildren().addAll(nom, score, wagons);
+    }
+
+    public void miseAJourInfos() {
+        score.setText("Score : " + joueur.getScore());
+        wagons.setText("Wagons : " + joueur.getNbWagons());
     }
 }

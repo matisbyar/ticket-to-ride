@@ -1,8 +1,11 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
+import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.rails.Destination;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -22,10 +25,10 @@ import javafx.scene.layout.VBox;
 public class VueDuJeu extends BorderPane {
 
     private IJeu jeu;
-    private VBox vBoxgauche;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
     private VueRegles regles;
+    private ChangeListener<IJoueur> joueurListener;
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
@@ -33,14 +36,13 @@ public class VueDuJeu extends BorderPane {
         autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
         regles = new VueRegles();
 
-        this.setCenter(plateau);
+        // Attribution des positions
+        this.setLeft(new VueJoueurCourant(jeu));
         this.setRight(autresJoueurs);
-
-        vBoxgauche = new VBox();
-        vBoxgauche.getChildren().add(new VueJoueurCourant(jeu));
-
-        this.setLeft(vBoxgauche);
+        this.setCenter(plateau);
         this.setBottom(new VueChoix(this.jeu));
+
+        this.setStyle("-fx-background-color: #C8D1D6");
     }
 
     public IJeu getJeu() {
@@ -48,6 +50,17 @@ public class VueDuJeu extends BorderPane {
     }
 
     public void creerBindings() {
+        // Permet d'actualiser les infos des autres joueurs à chaque tour de jeu.
+        joueurListener = new ChangeListener<IJoueur>() {
+            @Override
+            public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
+                Platform.runLater(() -> {
+                    autresJoueurs.miseAJourInfosJoueurs();
+                });
+            }
+        };
+        jeu.joueurCourantProperty().addListener(joueurListener);
 
+        plateau.creerBindings();
     }
 }

@@ -7,6 +7,7 @@ import fr.umontpellier.iut.rails.Destinations;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -34,6 +35,11 @@ public class VueJoueurCourant extends VBox {
         mesCartesWagon = new Label();
         destinations = new VBox();
         cartesWagons = new VBox();
+
+        this.setPadding(new Insets(20.0));
+        nom.setStyle("-fx-font-size: 16px");
+        mesMissions.setStyle("-fx-font-size: 16px");
+        mesCartesWagon.setStyle("-fx-font-size: 16px");
 
         creerBindings();
 
