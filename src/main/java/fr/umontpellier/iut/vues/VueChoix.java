@@ -73,6 +73,17 @@ public class VueChoix extends BorderPane {
                             cartesDestination.getChildren().removeIf(vueDestination -> carte.getNom().equals(vueDestination.getId()));
                         }
                     }
+                    if (change.getList().isEmpty()) {
+                        piocheDestination.setVisible(true);
+                        piocheWagon.setVisible(true);
+                        cartesWagonsVisibles.setVisible(true);
+                    }
+                    if (!change.getList().isEmpty()) {
+                        piocheDestination.setVisible(false);
+                        piocheWagon.setVisible(false);
+                        cartesWagonsVisibles.setVisible(false);
+
+                    }
                 });
             }
         };
