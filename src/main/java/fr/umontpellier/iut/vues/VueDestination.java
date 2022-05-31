@@ -2,6 +2,7 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
+import fr.umontpellier.iut.IRoute;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -35,6 +36,14 @@ public class VueDestination extends Button {
 
     public IDestination getDestination() {
         return destination;
+    }
+
+    /**
+     * @param route une route
+     * @return Renvoie le format de l'image de nommage d'une route
+     */
+    public String getImageFromDestination(IRoute route) {
+        return "eu" + route.getVille1() + "-" + route.getVille2() + ".png";
     }
 
 }

@@ -7,7 +7,6 @@ import fr.umontpellier.iut.rails.Destinations;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -21,7 +20,7 @@ public class VueJoueurCourant extends VBox {
     private IJeu jeu;
     private Label nom, score, wagons, gares, statut, mesMissions, mesCartesWagon;
     private VBox destinations, cartesWagons;
-    public ChangeListener<IJoueur> changementJoueur, changementJoueurDestinations;
+    public ChangeListener<IJoueur> changementJoueur;
 
     public VueJoueurCourant(IJeu jeu) {
         this.jeu = jeu;
@@ -62,8 +61,6 @@ public class VueJoueurCourant extends VBox {
                     for (Destinations carteWagon: nouveauJoueur.getCartesWagon()) {
                         cartesWagons.getChildren().add(new Label(carteWagon.toString()));
                     }
-
-                    System.out.println(nouveauJoueur.getNom() + " aussi nommé " + jeu.joueurCourantProperty().get().getNom() + " joue.");
                 });
             }
         };

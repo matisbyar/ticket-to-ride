@@ -1,6 +1,5 @@
 package fr.umontpellier.iut.vues;
 
-import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.rails.Destination;
 import fr.umontpellier.iut.rails.Destinations;
@@ -8,35 +7,45 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
-import java.util.List;
 
-public class VueChoix extends HBox {
+public class VueChoix extends BorderPane {
 
     private IJeu jeu;
 
-    private Label action;
-    private ChangeListener<String> stringChangeListener;
+    private Label instruction;
+    private ChangeListener<String> instructionListener;
     private ListChangeListener<Destination> destinationListener;
     private ListChangeListener<Destinations> cartesWagonsVisiblesListener;
 
     private Button passer;
 
+    private HBox cartes;
     private HBox cartesDestination;
     private HBox cartesWagonsVisibles;
 
     public VueChoix(IJeu jeu) {
-        action = new Label();
+        instruction = new Label();
         cartesDestination = new HBox();
         cartesWagonsVisibles = new HBox();
+        cartes = new HBox();
         passer = new Button("Passer");
         this.jeu = jeu;
 
+        createBindings();
+
+        cartes.getChildren().add(cartesDestination);
+        cartes.getChildren().add(cartesWagonsVisibles);
+        this.setTop(instruction);
+        this.setCenter(cartes);
+        this.setRight(passer);
+    }
+
+    public void createBindings() {
         destinationListener = new ListChangeListener<Destination>() {
             @Override
             public void onChanged(Change<? extends Destination> change) {
@@ -73,17 +82,19 @@ public class VueChoix extends HBox {
         };
         jeu.cartesWagonVisiblesProperty().addListener(cartesWagonsVisiblesListener);
 
+        instructionListener = new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String ancienneInstruction, String nouvelleInstruction) {
+                Platform.runLater(() -> {
+                    instruction.setText(nouvelleInstruction);
+                });
+            }
+        };
+        jeu.instructionProperty().addListener(instructionListener);
+
         passer.setOnAction(click -> {
             System.out.println("Passer a été selectionné.");
             jeu.passerAEteChoisi();
         });
-
-        getChildren().add(cartesDestination);
-        getChildren().add(cartesWagonsVisibles);
-        getChildren().add(passer);
-    }
-
-    public void createBindings() {
-
     }
 }

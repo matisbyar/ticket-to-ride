@@ -19,10 +19,9 @@ import javafx.scene.layout.VBox;
  * (le joueur courant, les 5 cartes Wagons visibles, les destinations lors de l'étape d'initialisation de la partie, ...)
  * ainsi que les listeners à exécuter lorsque ces éléments changent
  */
-public class VueDuJeu extends Pane {
+public class VueDuJeu extends BorderPane {
 
     private IJeu jeu;
-    private BorderPane borderPane;
     private VBox vBoxgauche;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
@@ -34,17 +33,14 @@ public class VueDuJeu extends Pane {
         autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
         regles = new VueRegles();
 
-        borderPane = new BorderPane();
-        borderPane.setCenter(plateau);
-        borderPane.setRight(autresJoueurs);
+        this.setCenter(plateau);
+        this.setRight(autresJoueurs);
 
         vBoxgauche = new VBox();
         vBoxgauche.getChildren().add(new VueJoueurCourant(jeu));
 
-        borderPane.setLeft(vBoxgauche);
-        borderPane.setBottom(new VueChoix(this.jeu));
-
-        getChildren().add(borderPane);
+        this.setLeft(vBoxgauche);
+        this.setBottom(new VueChoix(this.jeu));
     }
 
     public IJeu getJeu() {
