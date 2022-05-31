@@ -29,6 +29,7 @@ public class VueDestination extends Button {
         this.setOnAction(actionEvent -> {
             System.out.println(nom + " a été choisi.");
             ((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination.getNom());
+
         });
     }
 
