@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -31,6 +32,8 @@ public class VueChoix extends BorderPane {
     private HBox cartesWagonsVisibles;
 
     public VueChoix(IJeu jeu) {
+        this.jeu = jeu;
+
         instruction = new Label();
         cartesDestination = new HBox();
         cartesWagonsVisibles = new HBox();
@@ -57,6 +60,8 @@ public class VueChoix extends BorderPane {
         this.setTop(instruction);
         this.setCenter(cartes);
         this.setRight(passer);
+
+        this.setPadding(new Insets(20.0));
     }
 
     public void createBindings() {

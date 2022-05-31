@@ -1,6 +1,8 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.rails.Joueur;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -15,6 +17,14 @@ public class VueAutresJoueurs extends VBox {
 
     public VueAutresJoueurs(List<Joueur> listeJoueurs) {
         for (Joueur joueur : listeJoueurs) getChildren().add(new VueAutresJoueursMini(joueur));
+
         this.setSpacing(20.0);
+        this.setPadding(new Insets(20.0));
+    }
+
+    public void miseAJourInfosJoueurs() {
+        for (Node joueur: getChildren()) {
+            ((VueAutresJoueursMini) joueur).miseAJourInfos();
+        }
     }
 }
