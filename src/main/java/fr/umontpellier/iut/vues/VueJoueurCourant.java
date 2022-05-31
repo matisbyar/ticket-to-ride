@@ -2,11 +2,12 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
-import fr.umontpellier.iut.rails.Joueur;
+import fr.umontpellier.iut.rails.Destination;
+import fr.umontpellier.iut.rails.Destinations;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -18,65 +19,54 @@ import javafx.scene.layout.VBox;
 public class VueJoueurCourant extends VBox {
 
     private IJeu jeu;
-    private IJoueur joueur;
     private Label nom, score, wagons, gares, statut, mesMissions, mesCartesWagon;
-    public ChangeListener<IJoueur> changementJoueur;
+    private VBox destinations, cartesWagons;
+    public ChangeListener<IJoueur> changementJoueur, changementJoueurDestinations;
 
-    public VueJoueurCourant(Joueur j, IJeu jeu) {
+    public VueJoueurCourant(IJeu jeu) {
         this.jeu = jeu;
-        joueur = jeu.getJoueurs().get(0);
 
-        nom = new Label(j.getNom());
+        nom = new Label();
         score = new Label();
         wagons = new Label();
         gares = new Label();
         statut = new Label("À vous de jouer !");
         mesMissions = new Label();
         mesCartesWagon = new Label();
+        destinations = new VBox();
+        cartesWagons = new VBox();
 
         creerBindings();
 
-        this.getChildren().addAll(nom, score, wagons, gares, statut, mesMissions, new VueDestinationsJoueur(jeu), mesCartesWagon, new VueCartesWagonJoueur(jeu));
+        this.getChildren().addAll(nom, score, wagons, gares, statut, mesMissions, destinations, mesCartesWagon, cartesWagons);
     }
 
     public void creerBindings() {
         changementJoueur = new ChangeListener<IJoueur>() {
             @Override
-            public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur iJoueur, IJoueur t1) {
+            public void changed(ObservableValue<? extends IJoueur> observableValue, IJoueur ancienJoueur, IJoueur nouveauJoueur) {
                 Platform.runLater(() -> {
-                    joueur = t1;
-                    nom.setText(t1.getNom());
-                    score.setText("Score : " + t1.getScore());
-                    wagons.setText("Wagons restants : " + t1.getNbWagons());
-                    gares.setText("Gares : " + t1.getNbGares());
-                    System.out.println(t1.getNom() + " aussi nommé " + jeu.joueurCourantProperty().get().getNom() + " joue.");
+                    nom.setText(nouveauJoueur.getNom());
+                    score.setText("Score : " + nouveauJoueur.getScore());
+                    wagons.setText("Wagons restants : " + nouveauJoueur.getNbWagons());
+                    gares.setText("Gares : " + nouveauJoueur.getNbGares());
+                    mesMissions.setText("Mes destinations (" + nouveauJoueur.getDestinations().size() + ")");
+                    mesCartesWagon.setText("Mes cartes wagon (" + nouveauJoueur.getCartesWagon().size() + ")");
+
+                    destinations.getChildren().clear();
+                    for (Destination carte: nouveauJoueur.getDestinations()) {
+                        destinations.getChildren().add(new Label(carte.getNom()));
+                    }
+
+                    cartesWagons.getChildren().clear();
+                    for (Destinations carteWagon: nouveauJoueur.getCartesWagon()) {
+                        cartesWagons.getChildren().add(new Label(carteWagon.toString()));
+                    }
+
+                    System.out.println(nouveauJoueur.getNom() + " aussi nommé " + jeu.joueurCourantProperty().get().getNom() + " joue.");
                 });
             }
         };
         jeu.joueurCourantProperty().addListener(changementJoueur);
-
-        /*ListChangeListener<Destination> cartesDestinationsListener = new ListChangeListener<Destination>() {
-            @Override
-            public void onChanged(Change<? extends Destination> change) {
-                Platform.runLater(() ->{
-                    change.next();
-                    if (change.wasAdded()) {
-                        getChildren().add(new VueDestination(change.getAddedSubList().get(0)));
-                    }
-                    if (change.wasRemoved()) {
-                        for (Destination carte : change.getRemoved()) {
-                            getChildren().removeIf(vueDestination -> carte.getNom().equals(vueDestination.getId()));
-                        }
-                    }
-                });
-            }
-        };
-        jeu.joueurCourantProperty().get().destinationsProperty().addListener(cartesDestinationsListener);*/
-
-        //labelWagons.bind(Bindings.concat("Mes cartes wagon (" + jeu.joueurCourantProperty().get().getCartesWagon().size() + ")"));
-        Platform.runLater(() -> {
-            mesCartesWagon.textProperty().bind(Bindings.concat("Mes cartes wagon (" + jeu.joueurCourantProperty().get().getCartesWagon().size() + ")"));
-            mesMissions.textProperty().bind(Bindings.concat("Mes destinations (" + jeu.joueurCourantProperty().get().getDestinations().size() + ")"));
-        });
     }
 }

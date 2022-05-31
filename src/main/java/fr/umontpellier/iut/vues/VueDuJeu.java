@@ -28,9 +28,6 @@ public class VueDuJeu extends Pane {
     private VueAutresJoueurs autresJoueurs;
     private VueRegles regles;
 
-    private ListChangeListener<Destination> destinationListener;
-    private HBox destinations;
-
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
@@ -42,8 +39,7 @@ public class VueDuJeu extends Pane {
         borderPane.setRight(autresJoueurs);
 
         vBoxgauche = new VBox();
-        vBoxgauche.getChildren().add(new VueJoueurCourant(jeu.getJoueurs().get(0), this.getJeu()));
-        vBoxgauche.getChildren().add(new VueCartesWagonJoueur(this.jeu));
+        vBoxgauche.getChildren().add(new VueJoueurCourant(jeu));
 
         borderPane.setLeft(vBoxgauche);
         borderPane.setBottom(new VueChoix(this.jeu));
