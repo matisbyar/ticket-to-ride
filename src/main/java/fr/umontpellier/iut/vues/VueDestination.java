@@ -9,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.util.Locale;
+
 /**
  * Cette classe représente la vue d'une carte Destination.
  *
@@ -18,17 +20,19 @@ public class VueDestination extends Button {
 
     private IDestination destination;
     private Label nom;
-    private ImageView image;
 
     public VueDestination(IDestination destination) {
         this.destination = destination;
-        //image = new ImageView(new Image(""));
+        String defaut = "C:\\Users\\Erwan\\IdeaProjects\\railsihm\\src\\main\\resources\\images\\cartesWagons\\carte-wagon-";
+        //Image source = new Image(defaut.concat(destination.toString().concat(".png")));
+        //ImageView image = new ImageView(source);
+        //this.setGraphic(image);
         nom = new Label(destination.getNom());
         this.setText(nom.getText());
-        this.setId(nom.getText());
+        this.setId(destination.getNom());
 
         this.setOnAction(actionEvent -> {
-            System.out.println(nom + " a été choisi.");
+            System.out.println(destination + " a été choisi.");
             ((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination.getNom());
 
         });
