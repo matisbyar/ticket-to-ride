@@ -23,10 +23,13 @@ public class VueDestination extends Button {
 
     public VueDestination(IDestination destination) {
         this.destination = destination;
-        String defaut = "C:\\Users\\Erwan\\IdeaProjects\\railsihm\\src\\main\\resources\\images\\cartesWagons\\carte-wagon-";
-        //Image source = new Image(defaut.concat(destination.toString().concat(".png")));
-        //ImageView image = new ImageView(source);
-        //this.setGraphic(image);
+        String[] villes = destination.toString().split(" ");
+        System.out.println(villes +"\n");
+        String defaut = "images/missions/eu-";
+        System.out.println(defaut.concat(villes[0].toLowerCase().concat(villes[1].toLowerCase()).concat(villes[2].toLowerCase())).concat(".png"));
+        Image source = new Image(defaut.concat(villes[0].toLowerCase().concat(villes[1].toLowerCase()).concat(villes[2].toLowerCase())).concat(".png"));
+        ImageView image = new ImageView(source);
+        this.setGraphic(image);
         nom = new Label(destination.getNom());
         this.setText(nom.getText());
         this.setId(destination.getNom());
