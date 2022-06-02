@@ -34,17 +34,6 @@ public class VueCarteWagon extends Button {
         });
     }
 
-    public VueCarteWagon(String couleur) {
-        this.setText(couleur);
-        this.setId(couleur);
-
-        this.setOnAction(actionEvent -> {
-            System.out.println(couleurWagon + " a été choisi.");
-            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteWagonAEteChoisie(couleurWagon);
-
-        });
-    }
-
     public ICouleurWagon getCouleurWagon() {
         return couleurWagon;
     }

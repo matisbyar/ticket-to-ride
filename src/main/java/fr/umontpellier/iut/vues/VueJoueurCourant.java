@@ -65,7 +65,7 @@ public class VueJoueurCourant extends VBox {
 
                     cartesWagons.getChildren().clear();
                     for (ICouleurWagon carteWagon: nouveauJoueur.getCartesWagon()) {
-                        cartesWagons.getChildren().add(new VueCarteWagon(carteWagon.toString()));
+                        cartesWagons.getChildren().add(new VueCarteWagon(carteWagon));
                     }
                 });
             }
