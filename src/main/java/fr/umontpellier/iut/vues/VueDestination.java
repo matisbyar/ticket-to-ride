@@ -25,9 +25,10 @@ public class VueDestination extends Button {
     public VueDestination(IDestination destination) {
         this.destination = destination;
         String[] villes = destination.toString().split(" ");
-        this.setGraphic(new ImageView(new Image("file:ressources/images/missions/eu-".concat(villes[0].toLowerCase().concat(villes[1].toLowerCase()).concat(villes[2].toLowerCase())).concat(".png"))));
-        nom = new Label(destination.getNom());
-        this.setText(nom.getText());
+        ImageView image = new ImageView(new Image("file:ressources/images/missions/eu-".concat(villes[0].toLowerCase().concat(villes[1].toLowerCase()).concat(villes[2].toLowerCase())).concat(".png")));
+        this.setGraphic(image);
+        image.setFitWidth(124);
+        image.setFitHeight(80);
         this.setId(destination.getNom());
 
         this.setOnAction(actionEvent -> {

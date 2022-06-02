@@ -21,8 +21,22 @@ public class VueCarteWagon extends Button {
 
     public VueCarteWagon(ICouleurWagon couleurWagon) {
         this.couleurWagon = couleurWagon;
-        this.setGraphic(new ImageView(new Image("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png")))));
+        ImageView image = new ImageView(new Image("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png"))));
+        image.setFitWidth(124);
+        image.setFitHeight(80);
+        this.setGraphic(image);
         this.setId(couleurWagon.toString());
+
+        this.setOnAction(actionEvent -> {
+            System.out.println(couleurWagon + " a été choisi.");
+            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteWagonAEteChoisie(couleurWagon);
+
+        });
+    }
+
+    public VueCarteWagon(String couleur) {
+        this.setText(couleur);
+        this.setId(couleur);
 
         this.setOnAction(actionEvent -> {
             System.out.println(couleurWagon + " a été choisi.");

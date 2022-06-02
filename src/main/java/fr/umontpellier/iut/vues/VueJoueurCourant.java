@@ -4,8 +4,6 @@ import fr.umontpellier.iut.ICouleurWagon;
 import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
-import fr.umontpellier.iut.rails.Destination;
-import fr.umontpellier.iut.rails.Destinations;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -67,7 +65,7 @@ public class VueJoueurCourant extends VBox {
 
                     cartesWagons.getChildren().clear();
                     for (ICouleurWagon carteWagon: nouveauJoueur.getCartesWagon()) {
-                        cartesWagons.getChildren().add(new VueCarteWagon(carteWagon));
+                        cartesWagons.getChildren().add(new VueCarteWagon(carteWagon.toString()));
                     }
                 });
             }

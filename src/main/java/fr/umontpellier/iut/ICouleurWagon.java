@@ -6,4 +6,5 @@ public interface ICouleurWagon {
     static ICouleurWagon[] values() {
         return Destinations.values();
     }
+    String toString();
 }
