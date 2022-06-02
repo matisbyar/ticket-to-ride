@@ -1,6 +1,6 @@
 package fr.umontpellier.iut;
 
-import fr.umontpellier.iut.rails.Destinations;
+import fr.umontpellier.iut.rails.CouleurWagon;
 import fr.umontpellier.iut.rails.Destination;
 import javafx.collections.ObservableList;
 
@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface IJoueur {
 
-    ObservableList<Destinations> cartesWagonProperty();
+    ObservableList<CouleurWagon> cartesWagonProperty();
     ObservableList<Destination> destinationsProperty();
 
     public static enum Couleur {
         JAUNE, ROUGE, BLEU, VERT, ROSE;
     }
 
-    List<Destinations> getCartesWagon();
+    List<CouleurWagon> getCartesWagon();
     List<Destination> getDestinations();
     int getNbWagons();
     String getNom();

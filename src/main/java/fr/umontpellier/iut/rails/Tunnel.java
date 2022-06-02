@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Tunnel extends Route {
-    public Tunnel(Ville ville1, Ville ville2, int longueur, Destinations couleur) {
+    public Tunnel(Ville ville1, Ville ville2, int longueur, CouleurWagon couleur) {
         super(ville1, ville2, longueur, couleur);
     }
 
@@ -26,9 +26,9 @@ public class Tunnel extends Route {
         // la couleur du tunnel est la couleur des cartes "simples" que le joueur a
         // posées pour construire le tunnel (ou LOCOMOTIVE) si aucune couleur simple n'a
         // été jouée
-        Destinations couleurTunnel = Destinations.LOCOMOTIVE;
-        for (Destinations c : joueur.getCartesWagonPosees()) {
-            if (c != Destinations.LOCOMOTIVE) {
+        CouleurWagon couleurTunnel = CouleurWagon.LOCOMOTIVE;
+        for (CouleurWagon c : joueur.getCartesWagonPosees()) {
+            if (c != CouleurWagon.LOCOMOTIVE) {
                 couleurTunnel = c;
                 break;
             }
@@ -37,14 +37,14 @@ public class Tunnel extends Route {
         // déterminer le coût supplémentaire du tunnel en retournant les 3 premières
         // cartes de la pioche
         int coutTunnel = 0;
-        ArrayList<Destinations> cartesRetournees = new ArrayList<>();
+        ArrayList<CouleurWagon> cartesRetournees = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            Destinations c = joueur.getJeu().piocherCarteWagon();
+            CouleurWagon c = joueur.getJeu().piocherCarteWagon();
             if (c == null) {
                 break;
             }
             cartesRetournees.add(c);
-            if (c == Destinations.LOCOMOTIVE || c == couleurTunnel) {
+            if (c == CouleurWagon.LOCOMOTIVE || c == couleurTunnel) {
                 coutTunnel++;
             }
         }
@@ -57,8 +57,8 @@ public class Tunnel extends Route {
         // peut abandonner et récupérer les cartes)
         while (coutTunnel > 0) {
             Set<String> optionsPossibles = new HashSet<>();
-            if (joueur.hasCarteWagon(Destinations.LOCOMOTIVE)) {
-                optionsPossibles.add(Destinations.LOCOMOTIVE.name());
+            if (joueur.hasCarteWagon(CouleurWagon.LOCOMOTIVE)) {
+                optionsPossibles.add(CouleurWagon.LOCOMOTIVE.name());
             }
             if (joueur.hasCarteWagon(couleurTunnel)) {
                 optionsPossibles.add(couleurTunnel.name());
@@ -72,7 +72,7 @@ public class Tunnel extends Route {
                 // annulation de la capture
                 break;
             } else {
-                joueur.poserCarteWagon(Destinations.valueOf(choix));
+                joueur.poserCarteWagon(CouleurWagon.valueOf(choix));
                 coutTunnel -= 1;
             }
         }

@@ -2,7 +2,7 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.rails.Destination;
-import fr.umontpellier.iut.rails.Destinations;
+import fr.umontpellier.iut.rails.CouleurWagon;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,7 +22,7 @@ public class VueChoix extends BorderPane {
     private Label instruction;
     private ChangeListener<String> instructionListener;
     private ListChangeListener<Destination> destinationListener;
-    private ListChangeListener<Destinations> cartesWagonsVisiblesListener;
+    private ListChangeListener<CouleurWagon> cartesWagonsVisiblesListener;
 
     private Button passer;
     private Button piocheDestination;
@@ -100,16 +100,16 @@ public class VueChoix extends BorderPane {
         };
         jeu.destinationsInitialesProperty().addListener(destinationListener);
 
-        cartesWagonsVisiblesListener = new ListChangeListener<Destinations>() {
+        cartesWagonsVisiblesListener = new ListChangeListener<CouleurWagon>() {
             @Override
-            public void onChanged(Change<? extends Destinations> change) {
+            public void onChanged(Change<? extends CouleurWagon> change) {
                 Platform.runLater(() -> {
                     change.next();
                     if (change.wasAdded()) {
                         cartesWagonsVisibles.getChildren().add(new VueCarteWagon(change.getAddedSubList().get(0)));
                     }
                     if (change.wasRemoved()) {
-                        for (Destinations carte : change.getRemoved()) {
+                        for (CouleurWagon carte : change.getRemoved()) {
                             for (int i = 0; i < cartesWagonsVisibles.getChildren().size(); i++) {
                                 if (carte.toString().equals(cartesWagonsVisibles.getChildren().get(i).getId())) {
                                     cartesWagonsVisibles.getChildren().remove(i);
