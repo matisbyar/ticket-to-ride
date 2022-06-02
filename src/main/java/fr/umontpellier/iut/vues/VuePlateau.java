@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -33,7 +34,8 @@ public class VuePlateau extends Pane {
     }
 
     @FXML
-    public void choixRouteOuVille() {
+    public void choixRouteOuVille(MouseEvent event) {
+        ((VueDuJeu) getScene().getRoot()).getJeu().uneVilleOuUneRouteAEteChoisie(((Node) event.getSource()).getId());
     }
 
     @FXML

@@ -1,5 +1,7 @@
 package fr.umontpellier.iut.vues;
 
+import fr.umontpellier.iut.ICouleurWagon;
+import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.rails.Destination;
@@ -59,13 +61,13 @@ public class VueJoueurCourant extends VBox {
                     mesCartesWagon.setText("Mes cartes wagon (" + nouveauJoueur.getCartesWagon().size() + ")");
 
                     destinations.getChildren().clear();
-                    for (Destination carte: nouveauJoueur.getDestinations()) {
+                    for (IDestination carte: nouveauJoueur.getDestinations()) {
                         destinations.getChildren().add(new Label(carte.getNom()));
                     }
 
                     cartesWagons.getChildren().clear();
-                    for (Destinations carteWagon: nouveauJoueur.getCartesWagon()) {
-                        cartesWagons.getChildren().add(new Label(carteWagon.toString()));
+                    for (ICouleurWagon carteWagon: nouveauJoueur.getCartesWagon()) {
+                        cartesWagons.getChildren().add(new VueCarteWagon(carteWagon));
                     }
                 });
             }
