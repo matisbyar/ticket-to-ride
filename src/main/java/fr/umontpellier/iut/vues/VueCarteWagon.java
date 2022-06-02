@@ -21,10 +21,7 @@ public class VueCarteWagon extends Button {
 
     public VueCarteWagon(ICouleurWagon couleurWagon) {
         this.couleurWagon = couleurWagon;
-        ImageView image = new ImageView(new Image("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png"))));
-        //image.setFitHeight(4);
-        this.setGraphic(image);
-        System.out.println("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png")));
+        this.setGraphic(new ImageView(new Image("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png")))));
         this.setId(couleurWagon.toString());
 
         this.setOnAction(actionEvent -> {
