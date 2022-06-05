@@ -27,20 +27,26 @@ public class VueDuJeu extends BorderPane {
     private IJeu jeu;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
-    private VueRegles regles;
     private ChangeListener<IJoueur> joueurListener;
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
-        regles = new VueRegles();
+
+        //this.setPrefSize(1601.0, 1097.0);
 
         // Attribution des positions
+        this.setCenter(plateau);
         this.setLeft(new VueJoueurCourant(jeu));
         this.setRight(autresJoueurs);
-        this.setCenter(plateau);
         this.setBottom(new VueChoix(this.jeu));
+
+        /*
+        this.getLeft().setStyle("-fx-background-color: red");
+        this.getRight().setStyle("-fx-background-color: green");
+        this.getBottom().setStyle("-fx-background-color: blue");
+         */
 
         this.setStyle("-fx-background-color: #C8D1D6");
     }

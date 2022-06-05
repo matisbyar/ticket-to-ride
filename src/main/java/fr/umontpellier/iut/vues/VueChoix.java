@@ -66,8 +66,8 @@ public class VueChoix extends BorderPane {
         this.setCenter(cartes);
         this.setRight(passer);
 
-        this.setPadding(new Insets(20.0));
-        VueChoix.setAlignment(instruction, Pos.TOP_CENTER);
+        //this.setPadding(new Insets(20.0));
+        VueChoix.setAlignment(instruction, Pos.CENTER);
     }
 
     public void createBindings() {

@@ -46,7 +46,7 @@ public class VuePlateau extends Pane {
     private Group routes;
 
     public void creerBindings() {
-        //bindRedimensionPlateau();
+        bindRedimensionPlateau();
     }
 
     private void bindRedimensionPlateau() {
@@ -76,7 +76,7 @@ public class VuePlateau extends Pane {
             }
             @Override
             protected double computeValue() {
-                return  DonneesPlateau.hauteurRectangle * image.getLayoutBounds().getHeight() / DonneesPlateau.hauteurInitialePlateau;
+                return DonneesPlateau.hauteurRectangle * image.getLayoutBounds().getHeight() / DonneesPlateau.hauteurInitialePlateau;
             }
         });
 //        rect.layoutXProperty()
@@ -86,7 +86,7 @@ public class VuePlateau extends Pane {
             }
             @Override
             protected double computeValue() {
-                return layoutX * image.getLayoutBounds().getWidth()/ DonneesPlateau.largeurInitialePlateau;
+                return layoutX * image.getLayoutBounds().getWidth() / DonneesPlateau.largeurInitialePlateau;
             }
         });
 //        rect.xProperty()
@@ -96,7 +96,7 @@ public class VuePlateau extends Pane {
             }
             @Override
             protected double computeValue() {
-                return layoutX / DonneesPlateau.largeurRectangle;
+                return DonneesPlateau.xInitial * image.getLayoutBounds().getWidth() / DonneesPlateau.largeurInitialePlateau;
             }
         });
 //        rect.layoutYProperty()
@@ -106,7 +106,7 @@ public class VuePlateau extends Pane {
             }
             @Override
             protected double computeValue() {
-                return layoutY * image.getLayoutBounds().getHeight()/ DonneesPlateau.hauteurInitialePlateau;
+                return layoutY * image.getLayoutBounds().getHeight() / DonneesPlateau.hauteurInitialePlateau;
             }
         });
 //        rect.yProperty()
@@ -116,7 +116,7 @@ public class VuePlateau extends Pane {
             }
             @Override
             protected double computeValue() {
-                return layoutY / DonneesPlateau.hauteurRectangle;
+                return DonneesPlateau.yInitial * image.getLayoutBounds().getHeight() / DonneesPlateau.hauteurInitialePlateau;
             }
         });
     }

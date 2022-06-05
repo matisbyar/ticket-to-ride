@@ -36,7 +36,7 @@ public class VueJoueurCourant extends VBox {
         destinations = new VBox();
         cartesWagons = new VBox();
 
-        this.setPadding(new Insets(20.0));
+        //this.setPadding(new Insets(20.0));
         nom.setStyle("-fx-font-size: 16px");
         mesMissions.setStyle("-fx-font-size: 16px");
         mesCartesWagon.setStyle("-fx-font-size: 16px");
