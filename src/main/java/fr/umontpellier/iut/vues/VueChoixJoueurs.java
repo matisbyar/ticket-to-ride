@@ -1,5 +1,6 @@
 package fr.umontpellier.iut.vues;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -44,6 +46,9 @@ public class VueChoixJoueurs extends Stage {
     @FXML
     private Button jouer;
 
+    @FXML
+    private Label avertissement;
+
     public List<String> getNomsJoueurs() {
         return nomsJoueurs;
     }
@@ -63,12 +68,16 @@ public class VueChoixJoueurs extends Stage {
     /**
      * Définit l'action à exécuter lorsque la liste des participants est correctement initialisée
      */
-    public void setNomsDesJoueursDefinisListener(ListChangeListener<String> quandLesNomsDesJoueursSontDefinis) {}
+    public void setNomsDesJoueursDefinisListener(ListChangeListener<String> quandLesNomsDesJoueursSontDefinis) {
+        nomsJoueurs.addListener(quandLesNomsDesJoueursSontDefinis);
+    }
 
     /**
      * Définit l'action à exécuter lorsque le nombre de participants change
      */
-    protected void setChangementDuNombreDeJoueursListener(ChangeListener<Integer> quandLeNombreDeJoueursChange) {}
+    protected void setChangementDuNombreDeJoueursListener(ChangeListener<Integer> quandLeNombreDeJoueursChange) {
+
+    }
 
     /**
      * Vérifie que tous les noms des participants sont renseignés
@@ -115,17 +124,41 @@ public class VueChoixJoueurs extends Stage {
 
     @FXML
     public void clickJouer() {
-        if (!rose.getText().isEmpty()) nomsJoueurs.add(rose.getText());
-        if (!jaune.getText().isEmpty()) nomsJoueurs.add(jaune.getText());
-        if (!vert.getText().isEmpty()) nomsJoueurs.add(vert.getText());
-        if (!rouge.getText().isEmpty()) nomsJoueurs.add(rouge.getText());
-        if (!bleu.getText().isEmpty()) nomsJoueurs.add(bleu.getText());
-        setListeDesNomsDeJoueurs();
+        if (nbLabelVides() <= 2) {
+            if (!rose.getText().isEmpty()) nomsJoueurs.add(rose.getText());
+            if (!jaune.getText().isEmpty()) nomsJoueurs.add(jaune.getText());
+            if (!vert.getText().isEmpty()) nomsJoueurs.add(vert.getText());
+            if (!rouge.getText().isEmpty()) nomsJoueurs.add(rouge.getText());
+            if (!bleu.getText().isEmpty()) nomsJoueurs.add(bleu.getText());
+            setListeDesNomsDeJoueurs();
+        } else {
+            showAvertissement();
+        }
     }
 
     @FXML
     public void clickRegles() {
         VueRegles regles = new VueRegles();
         regles.show();
+    }
+
+    /**
+     * @return Le nombre de Label non renseignés
+     */
+    public int nbLabelVides() {
+        int nb = 0;
+        if (rose.getText().isEmpty()) nb++;
+        if (jaune.getText().isEmpty()) nb++;
+        if (vert.getText().isEmpty()) nb++;
+        if (rouge.getText().isEmpty()) nb++;
+        if (bleu.getText().isEmpty()) nb++;
+        return nb;
+    }
+
+    /**
+     * Affiche l'avertissement en cas de non-respect des consignes relatives au nombre minimal de joueurs
+     */
+    public void showAvertissement() {
+        avertissement.setVisible(true);
     }
 }
