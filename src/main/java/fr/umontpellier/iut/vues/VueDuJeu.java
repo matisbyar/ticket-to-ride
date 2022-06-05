@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -34,21 +35,18 @@ public class VueDuJeu extends BorderPane {
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
 
-        //this.setPrefSize(1601.0, 1097.0);
-
         // Attribution des positions
         this.setCenter(plateau);
-        this.setLeft(new VueJoueurCourant(jeu));
         this.setRight(autresJoueurs);
-        this.setBottom(new VueChoix(this.jeu));
+        this.setBottom(new VueChoix(jeu));
+        this.setLeft(new VueJoueurCourant(jeu));
 
-        /*
-        this.getLeft().setStyle("-fx-background-color: red");
-        this.getRight().setStyle("-fx-background-color: green");
-        this.getBottom().setStyle("-fx-background-color: blue");
-         */
+        this.setPrefSize(700, 500);
+        this.setMaxSize(1200, 800);
+        debug(0);
 
         this.setStyle("-fx-background-color: #C8D1D6");
+        plateau.setPadding(new Insets(20.0));
     }
 
     public IJeu getJeu() {
@@ -68,5 +66,25 @@ public class VueDuJeu extends BorderPane {
         jeu.joueurCourantProperty().addListener(joueurListener);
 
         plateau.creerBindings();
+    }
+
+    /**
+     * Outil de debug
+     * @param priorite 1 pour la coloration, 2 pour l'invisibilité
+     */
+    public void debug(int priorite) {
+        if (priorite > 0) {
+            this.getLeft().setStyle("-fx-background-color: red");
+            this.getRight().setStyle("-fx-background-color: green");
+            this.getBottom().setStyle("-fx-background-color: blue");
+        }
+        if (priorite > 1) {
+            this.getLeft().setManaged(false);
+            this.getLeft().setVisible(false);
+            this.getRight().setManaged(false);
+            this.getRight().setVisible(false);
+            this.getBottom().setManaged(false);
+            this.getBottom().setVisible(false);
+        }
     }
 }

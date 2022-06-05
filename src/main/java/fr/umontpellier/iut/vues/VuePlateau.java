@@ -46,7 +46,7 @@ public class VuePlateau extends Pane {
     private Group routes;
 
     public void creerBindings() {
-        bindRedimensionPlateau();
+        //bindRedimensionPlateau();
     }
 
     private void bindRedimensionPlateau() {

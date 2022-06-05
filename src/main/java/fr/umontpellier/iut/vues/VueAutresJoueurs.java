@@ -19,7 +19,7 @@ public class VueAutresJoueurs extends VBox {
         for (Joueur joueur : listeJoueurs) getChildren().add(new VueAutresJoueursMini(joueur));
 
         this.setSpacing(20.0);
-        //this.setPadding(new Insets(20.0));
+        this.setPadding(new Insets(20.0));
     }
 
     public void miseAJourInfosJoueurs() {
