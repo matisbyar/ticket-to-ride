@@ -79,7 +79,9 @@ public class VueJoueurCourant extends VBox {
     }
 
     public void afficheCartes(List<CouleurWagon> destinations) {
+        // On récupère à l'aide de la méthode compteur(), la Collection Map associant une CouleurWagon et son nombre d'exemplaires
         Map<CouleurWagon, Integer> comptage = CouleurWagon.compteur(destinations);
+        // La Set va nous permettre de faire une boucle foreach, et de récupérer individuellement la Key et la Value (cf. notes de commit Affichage cartes wagon)
         Set<Map.Entry<CouleurWagon, Integer>> occurences = comptage.entrySet();
 
         for (Map.Entry<CouleurWagon, Integer> occurence: occurences) {
