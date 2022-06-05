@@ -15,11 +15,13 @@ public class VueReglages extends HBox {
 
         vueRegles = new VueRegles();
 
+        creerBindings();
+
         this.getChildren().addAll(pause, regles, logs);
     }
 
     public void creerBindings() {
-        regles.setOnAction(event -> {
+        regles.setOnAction(click -> {
             vueRegles.show();
         });
     }
