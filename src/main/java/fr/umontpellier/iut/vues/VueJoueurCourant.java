@@ -4,12 +4,19 @@ import fr.umontpellier.iut.ICouleurWagon;
 import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
+import fr.umontpellier.iut.rails.CouleurWagon;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static fr.umontpellier.iut.rails.CouleurWagon.compteur;
 
 /**
  * Cette classe présente les éléments appartenant au joueur courant.
@@ -64,12 +71,26 @@ public class VueJoueurCourant extends VBox {
                     }
 
                     cartesWagons.getChildren().clear();
-                    for (ICouleurWagon carteWagon: nouveauJoueur.getCartesWagon()) {
-                        cartesWagons.getChildren().add(new VueCarteWagon(carteWagon));
-                    }
+                    afficheCartes(nouveauJoueur.getCartesWagon());
                 });
             }
         };
         jeu.joueurCourantProperty().addListener(changementJoueur);
     }
+
+    public void afficheCartes(List<CouleurWagon> destinations) {
+        Map<CouleurWagon, Integer> comptage = CouleurWagon.compteur(destinations);
+        Set<Map.Entry<CouleurWagon, Integer>> occurences = comptage.entrySet();
+
+        for (Map.Entry<CouleurWagon, Integer> occurence: occurences) {
+            CouleurWagon couleur = occurence.getKey();
+            int quantite = occurence.getValue();
+
+            System.out.println(destinations);
+
+            if (quantite != 0 && couleur != CouleurWagon.GRIS) cartesWagons.getChildren().add(new VueCarteWagonJoueur(couleur, quantite));
+        }
+    }
+
+
 }
