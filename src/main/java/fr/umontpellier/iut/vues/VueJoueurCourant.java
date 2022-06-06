@@ -88,8 +88,6 @@ public class VueJoueurCourant extends VBox {
             CouleurWagon couleur = occurence.getKey();
             int quantite = occurence.getValue();
 
-            System.out.println(destinations);
-
             if (quantite != 0 && couleur != CouleurWagon.GRIS) cartesWagons.getChildren().add(new VueCarteWagonJoueur(couleur, quantite));
         }
     }

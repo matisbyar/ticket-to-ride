@@ -24,7 +24,7 @@ public class VueCarteWagonJoueur extends Button {
         this.setOnAction(actionEvent -> {
             System.out.println(couleurWagon + " a été choisi par le joueur.");
             ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteWagonAEteChoisie(couleurWagon);
-            this.setText("x" + (qte - 1));
+            //this.setText("x" + (qte - 1));
         });
     }
 

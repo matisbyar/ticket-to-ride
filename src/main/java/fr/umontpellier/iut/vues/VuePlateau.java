@@ -55,6 +55,9 @@ public class VuePlateau extends Pane {
 //        Les dimensions de l'image varient avec celle de la scène
         image.fitWidthProperty().bind(getScene().widthProperty());
         image.fitHeightProperty().bind(getScene().heightProperty());
+
+        this.maxHeightProperty().bind(getScene().heightProperty());
+        this.maxWidthProperty().bind(getScene().widthProperty());
     }
 
     private void bindRectangle(Rectangle rect, double layoutX, double layoutY) {

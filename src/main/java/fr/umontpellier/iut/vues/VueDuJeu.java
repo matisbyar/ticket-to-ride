@@ -2,17 +2,11 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
-import fr.umontpellier.iut.rails.Destination;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -41,8 +35,6 @@ public class VueDuJeu extends BorderPane {
         this.setBottom(new VueChoix(jeu));
         this.setLeft(new VueJoueurCourant(jeu));
 
-        this.setPrefSize(700, 500);
-        this.setMaxSize(1200, 800);
         debug(0);
 
         this.setStyle("-fx-background-color: #C8D1D6");
@@ -77,6 +69,7 @@ public class VueDuJeu extends BorderPane {
             this.getLeft().setStyle("-fx-background-color: red");
             this.getRight().setStyle("-fx-background-color: green");
             this.getBottom().setStyle("-fx-background-color: blue");
+            this.getCenter().setStyle("-fx-background-color: rgba(255,255,0,0.56)");
         }
         if (priorite > 1) {
             this.getLeft().setManaged(false);
