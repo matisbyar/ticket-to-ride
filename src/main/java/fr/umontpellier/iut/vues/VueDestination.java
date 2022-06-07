@@ -35,7 +35,20 @@ public class VueDestination extends Button {
         this.setOnAction(actionEvent -> {
             System.out.println(destination + " a été choisi.");
             ((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEteChoisie(destination.getNom());
+        });
+    }
 
+    public VueDestination(String selec) {
+        ImageView image = new ImageView(new Image("file:ressources/images/images/destination.jpg"));
+        this.setGraphic(image);
+        image.setFitWidth(124);
+        image.setFitHeight(80);
+        image.setPreserveRatio(true);
+        this.setId(selec);
+
+        this.setOnAction(actionEvent -> {
+            System.out.println("La pioche de destinations a été choisie");
+            ((VueDuJeu) getScene().getRoot()).getJeu().uneDestinationAEtePiochee();
         });
     }
 

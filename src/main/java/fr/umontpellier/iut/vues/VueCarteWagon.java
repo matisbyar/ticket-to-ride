@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.ICouleurWagon;
+import fr.umontpellier.iut.rails.CouleurWagon;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -31,7 +32,21 @@ public class VueCarteWagon extends Button {
         this.setOnAction(actionEvent -> {
             System.out.println(couleurWagon + " a été choisi.");
             ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteWagonAEteChoisie(couleurWagon);
+        });
+    }
 
+    public VueCarteWagon(String selec) {
+        this.couleurWagon = CouleurWagon.GRIS;
+        ImageView image = new ImageView(new Image("file:ressources/images/images/carte-wagon.png"));
+        image.setFitWidth(124);
+        image.setFitHeight(80);
+        image.setPreserveRatio(true);
+        this.setGraphic(image);
+        this.setId(selec);
+
+        this.setOnAction(actionEvent -> {
+            System.out.println("La pioche de cartes wagons a été choisie");
+            ((VueDuJeu) getScene().getRoot()).getJeu().uneCarteWagonAEtePiochee();
         });
     }
 

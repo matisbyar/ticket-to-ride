@@ -37,8 +37,8 @@ public class VueChoix extends VBox {
         this.jeu = jeu;
 
         instruction = new Label();
-        piocheDestination = new Button("Destinations");
-        piocheWagon = new Button("Wagons");
+        piocheDestination = new VueDestination("Destinations");
+        piocheWagon = new VueCarteWagon("Wagons");
 
         cartes = new HBox();
         cartesDestination = new HBox();
@@ -110,14 +110,6 @@ public class VueChoix extends VBox {
             }
         };
         jeu.instructionProperty().addListener(instructionListener);
-
-        piocheDestination.setOnAction(actionEvent -> {
-            jeu.uneDestinationAEtePiochee();
-        });
-
-        piocheWagon.setOnAction(actionEvent -> {
-            jeu.uneCarteWagonAEtePiochee();
-        });
     }
 
     public void styliser() {
