@@ -60,13 +60,34 @@ public class VueAutresJoueursMini extends VBox {
                     if (joueur.equals(nouveauJoueur)) {
                         vousJouez.setVisible(true);
                         vousJouez.setManaged(true);
+                        colorer();
                     } else {
                         vousJouez.setVisible(false);
                         vousJouez.setManaged(false);
+                        decolorer();
                     }
                 });
             }
         };
         jeu.joueurCourantProperty().addListener(estJoueurCourantListener);
+    }
+
+    public void colorer() {
+        this.setStyle(getCouleurString());
+    }
+
+    public void decolorer() {
+        this.setStyle("-fx-background-color: transparent");
+    }
+
+    private String getCouleurString() {
+        IJoueur.Couleur c = joueur.getCouleur();
+
+        if (c.toString().equals("JAUNE")) return "-fx-background-color: rgba(255,255,0,0.56)";
+        if (c.toString().equals("ROUGE")) return "-fx-background-color: rgba(255,0,0,0.48)";
+        if (c.toString().equals("BLEU")) return "-fx-background-color: rgb(104,104,220)";
+        if (c.toString().equals("VERT")) return "-fx-background-color: rgba(49,187,49,0.63)";
+        if (c.toString().equals("ROSE")) return "-fx-background-color: rgb(223,106,236)";
+        return "-fx-background-color: transparent";
     }
 }
