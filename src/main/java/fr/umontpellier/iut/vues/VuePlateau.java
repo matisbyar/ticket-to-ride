@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -20,7 +21,7 @@ import java.io.IOException;
  * On y définit le listener à exécuter lorsque qu'un élément du plateau a été choisi par l'utilisateur
  * ainsi que les bindings qui mettront ?à jour le plateau après la prise d'une route ou d'une ville par un joueur
  */
-public class VuePlateau extends Pane {
+public class VuePlateau extends StackPane {
 
     public VuePlateau() {
         try {
@@ -46,7 +47,7 @@ public class VuePlateau extends Pane {
     private Group routes;
 
     public void creerBindings() {
-        //bindRedimensionPlateau();
+        bindRedimensionPlateau();
     }
 
     private void bindRedimensionPlateau() {
@@ -56,11 +57,11 @@ public class VuePlateau extends Pane {
         image.fitWidthProperty().bind(getScene().widthProperty());
         image.fitHeightProperty().bind(getScene().heightProperty());
 
-        this.maxHeightProperty().bind(getScene().heightProperty());
-        this.maxWidthProperty().bind(getScene().widthProperty());
+        // this.prefHeightProperty().bind(image.fitHeightProperty());
+        // this.prefWidthProperty().bind(image.fitWidthProperty());
 
-        image.setVisible(false);
-        this.setStyle("-fx-background-color: purple");
+         //image.setVisible(false);
+         //this.setStyle("-fx-background-color: purple");
     }
 
     private void bindRectangle(Rectangle rect, double layoutX, double layoutY) {

@@ -3,13 +3,16 @@ package fr.umontpellier.iut.vues;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.vues.VuesElementsJoueur.VueAutresJoueurs;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Region;
+import javafx.util.Duration;
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -31,6 +34,7 @@ public class VueDuJeu extends BorderPane {
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
+
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
         panneauBas = new VuePanneauDeControles(jeu);
@@ -43,10 +47,14 @@ public class VueDuJeu extends BorderPane {
         this.setBottom(panneauBas);
         this.setLeft(new VueJoueurCourant(jeu));
 
-        debug(1);
+        debug(0);
 
         this.setStyle("-fx-background-color: #C8D1D6");
-        plateau.setPadding(new Insets(20.0));
+        plateau.setPadding(new Insets(30.0));
+        plateau.setAlignment(Pos.CENTER);
+        //panneauBas.setPadding(new Insets(0, 20, 0, 0));
+
+        this.setMinSize(600, 600);
     }
 
     public IJeu getJeu() {
@@ -103,5 +111,19 @@ public class VueDuJeu extends BorderPane {
 
         panneauBas.setPrefSize(this.getWidth(), this.getHeight()); // Default width and height
         panneauBas.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+    }
+
+    public void masquer() {
+        this.getLeft().setVisible(false);
+        this.getLeft().setManaged(false);
+        this.getRight().setVisible(false);
+        this.getRight().setManaged(false);
+    }
+
+    public void afficher() {
+        this.getLeft().setVisible(true);
+        this.getLeft().setManaged(true);
+        this.getRight().setVisible(true);
+        this.getRight().setManaged(true);
     }
 }
