@@ -6,6 +6,8 @@ import fr.umontpellier.iut.vues.VueDuJeu;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,7 +42,10 @@ public class VueAutresJoueursMini extends VBox {
 
         nom.setStyle("-fx-font-size: 16");
         score.setStyle("-fx-font-family: Courier");
-        vousJouez.setStyle("-fx-font-weight: 30px");
+        vousJouez.setStyle("font-weight: 30px");
+        this.setStyle("-fx-background-radius: 20px");
+        this.setAlignment(Pos.TOP_CENTER);
+        this.setPadding(new Insets(5));
 
         this.getChildren().addAll(avatar, nom, score, wagons, vousJouez);
 
