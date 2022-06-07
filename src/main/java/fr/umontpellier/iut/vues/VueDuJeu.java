@@ -32,7 +32,7 @@ public class VueDuJeu extends BorderPane {
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
-        autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
+        autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
         panneauBas = new VuePanneauDeControles(jeu);
 
         styliser();
@@ -43,7 +43,7 @@ public class VueDuJeu extends BorderPane {
         this.setBottom(panneauBas);
         this.setLeft(new VueJoueurCourant(jeu));
 
-        debug(0);
+        debug(1);
 
         this.setStyle("-fx-background-color: #C8D1D6");
         plateau.setPadding(new Insets(20.0));

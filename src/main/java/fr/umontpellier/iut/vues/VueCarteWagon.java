@@ -24,6 +24,7 @@ public class VueCarteWagon extends Button {
         ImageView image = new ImageView(new Image("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png"))));
         image.setFitWidth(124);
         image.setFitHeight(80);
+        image.setPreserveRatio(true);
         this.setGraphic(image);
         this.setId(couleurWagon.toString());
 

@@ -48,6 +48,8 @@ public class VueJoueurCourant extends VBox {
 
         creerBindings();
 
+        mesCartesWagon.setPadding(new Insets(20, 0, 0, 0));
+
         this.getChildren().addAll(nom, score, wagons, gares, statut, mesMissions, destinations, mesCartesWagon, cartesWagons);
     }
 
@@ -89,6 +91,4 @@ public class VueJoueurCourant extends VBox {
             if (quantite != 0 && couleur != CouleurWagon.GRIS) cartesWagons.getChildren().add(new VueCarteWagonJoueur(couleur, quantite));
         }
     }
-
-
 }

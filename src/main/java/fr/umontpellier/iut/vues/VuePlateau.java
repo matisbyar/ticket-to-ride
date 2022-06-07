@@ -46,7 +46,7 @@ public class VuePlateau extends Pane {
     private Group routes;
 
     public void creerBindings() {
-        bindRedimensionPlateau();
+        //bindRedimensionPlateau();
     }
 
     private void bindRedimensionPlateau() {
@@ -58,6 +58,9 @@ public class VuePlateau extends Pane {
 
         this.maxHeightProperty().bind(getScene().heightProperty());
         this.maxWidthProperty().bind(getScene().widthProperty());
+
+        image.setVisible(false);
+        this.setStyle("-fx-background-color: purple");
     }
 
     private void bindRectangle(Rectangle rect, double layoutX, double layoutY) {

@@ -29,6 +29,7 @@ public class VueDestination extends Button {
         this.setGraphic(image);
         image.setFitWidth(124);
         image.setFitHeight(80);
+        image.setPreserveRatio(true);
         this.setId(destination.getNom());
 
         this.setOnAction(actionEvent -> {
