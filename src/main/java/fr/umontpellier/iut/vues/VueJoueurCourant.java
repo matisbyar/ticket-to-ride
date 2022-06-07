@@ -9,10 +9,14 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +28,8 @@ import java.util.Set;
 public class VueJoueurCourant extends VBox {
 
     private IJeu jeu;
+    private ImageView avatar;
+    private Image image;
     private Label nom, score, wagons, gares, statut, mesMissions, mesCartesWagon;
     private VBox destinations, cartesWagons;
     public ChangeListener<IJoueur> changementJoueur;
@@ -31,6 +37,7 @@ public class VueJoueurCourant extends VBox {
     public VueJoueurCourant(IJeu jeu) {
         this.jeu = jeu;
 
+        avatar = new ImageView();
         nom = new Label();
         score = new Label();
         wagons = new Label();
@@ -41,16 +48,13 @@ public class VueJoueurCourant extends VBox {
         destinations = new VBox();
         cartesWagons = new VBox();
 
-        this.setPadding(new Insets(20.0));
-        nom.setStyle("-fx-font-size: 16px");
-        mesMissions.setStyle("-fx-font-size: 16px");
-        mesCartesWagon.setStyle("-fx-font-size: 16px");
+        styliser();
 
         creerBindings();
 
         mesCartesWagon.setPadding(new Insets(20, 0, 0, 0));
 
-        this.getChildren().addAll(nom, score, wagons, gares, statut, mesMissions, destinations, mesCartesWagon, cartesWagons);
+        this.getChildren().addAll(avatar, nom, score, wagons, gares, statut, mesMissions, destinations, mesCartesWagon, cartesWagons);
     }
 
     public void creerBindings() {
@@ -64,6 +68,9 @@ public class VueJoueurCourant extends VBox {
                     gares.setText("Gares : " + nouveauJoueur.getNbGares());
                     mesMissions.setText("Mes destinations (" + nouveauJoueur.getDestinations().size() + ")");
                     mesCartesWagon.setText("Mes cartes wagon (" + nouveauJoueur.getCartesWagon().size() + ")");
+
+                    image = new Image("images/avatars/avatar-".concat(nouveauJoueur.getCouleur().toString().toUpperCase(Locale.ROOT).concat(".png")));
+                    avatar.setImage(image);
 
                     destinations.getChildren().clear();
                     for (IDestination carte: nouveauJoueur.getDestinations()) {
@@ -90,5 +97,25 @@ public class VueJoueurCourant extends VBox {
 
             if (quantite != 0 && couleur != CouleurWagon.GRIS) cartesWagons.getChildren().add(new VueCarteWagonJoueur(couleur, quantite));
         }
+    }
+
+    private void styliser() {
+        // Alignement
+        this.setAlignment(Pos.TOP_CENTER);
+        cartesWagons.setAlignment(Pos.TOP_CENTER);
+
+        // Padding
+        this.setPadding(new Insets(20.0));
+        cartesWagons.setSpacing(10);
+
+        // Relatif à l'avatar
+        avatar.setFitWidth(140);
+        avatar.setFitHeight(110);
+        avatar.setPreserveRatio(true);
+
+        // Font size
+        nom.setStyle("-fx-font-size: 16px");
+        mesMissions.setStyle("-fx-font-size: 16px");
+        mesCartesWagon.setStyle("-fx-font-size: 16px");
     }
 }
