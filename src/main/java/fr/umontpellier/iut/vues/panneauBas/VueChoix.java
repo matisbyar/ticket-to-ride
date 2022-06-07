@@ -92,19 +92,9 @@ public class VueChoix extends VBox {
             @Override
             public void onChanged(Change<? extends CouleurWagon> change) {
                 Platform.runLater(() -> {
-                    change.next();
-                    if (change.wasAdded()) {
-                        cartesWagonsVisibles.getChildren().add(new VueCarteWagon(change.getAddedSubList().get(0)));
-                    }
-                    if (change.wasRemoved()) {
-                        for (CouleurWagon carte : change.getRemoved()) {
-                            for (int i = 0; i < cartesWagonsVisibles.getChildren().size(); i++) {
-                                if (carte.toString().equals(cartesWagonsVisibles.getChildren().get(i).getId())) {
-                                    cartesWagonsVisibles.getChildren().remove(i);
-                                    break;
-                                }
-                            }
-                        }
+                    cartesWagonsVisibles.getChildren().clear();
+                    for (int i = 0; i<jeu.cartesWagonVisiblesProperty().size(); i++) {
+                        cartesWagonsVisibles.getChildren().add(new VueCarteWagon(jeu.cartesWagonVisiblesProperty().get(i)));
                     }
                 });
             }
