@@ -2,11 +2,14 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
+import fr.umontpellier.iut.vues.VuesElementsJoueur.VueAutresJoueurs;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Region;
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -22,17 +25,22 @@ public class VueDuJeu extends BorderPane {
     private IJeu jeu;
     private VuePlateau plateau;
     private VueAutresJoueurs autresJoueurs;
+    private VuePanneauDeControles panneauBas;
+
     private ChangeListener<IJoueur> joueurListener;
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu.getJoueurs());
+        panneauBas = new VuePanneauDeControles(jeu);
+
+        styliser();
 
         // Attribution des positions
         this.setCenter(plateau);
         this.setRight(autresJoueurs);
-        this.setBottom(new VueChoix(jeu));
+        this.setBottom(panneauBas);
         this.setLeft(new VueJoueurCourant(jeu));
 
         debug(0);
@@ -79,5 +87,21 @@ public class VueDuJeu extends BorderPane {
             this.getBottom().setManaged(false);
             this.getBottom().setVisible(false);
         }
+    }
+
+    private void styliser() {
+        // Création de la VueChoix
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(25);
+        panneauBas.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(100);
+        panneauBas.getColumnConstraints().add(column);
+        column = new ColumnConstraints();
+        column.setPercentWidth(25);
+        panneauBas.getColumnConstraints().add(column);
+
+        panneauBas.setPrefSize(this.getWidth(), this.getHeight()); // Default width and height
+        panneauBas.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
     }
 }

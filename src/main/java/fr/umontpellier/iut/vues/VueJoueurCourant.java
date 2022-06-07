@@ -1,10 +1,10 @@
 package fr.umontpellier.iut.vues;
 
-import fr.umontpellier.iut.ICouleurWagon;
 import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.rails.CouleurWagon;
+import fr.umontpellier.iut.vues.VuesElementsJoueur.VueCarteWagonJoueur;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,8 +15,6 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static fr.umontpellier.iut.rails.CouleurWagon.compteur;
 
 /**
  * Cette classe présente les éléments appartenant au joueur courant.

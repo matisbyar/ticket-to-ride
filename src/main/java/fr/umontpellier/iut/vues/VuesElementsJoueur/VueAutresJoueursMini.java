@@ -1,19 +1,11 @@
-package fr.umontpellier.iut.vues;
+package fr.umontpellier.iut.vues.VuesElementsJoueur;
 
 import fr.umontpellier.iut.IJoueur;
-import fr.umontpellier.iut.rails.Joueur;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
 
 public class VueAutresJoueursMini extends VBox {
 

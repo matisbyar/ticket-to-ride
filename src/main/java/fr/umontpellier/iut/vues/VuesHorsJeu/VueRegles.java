@@ -1,4 +1,4 @@
-package fr.umontpellier.iut.vues;
+package fr.umontpellier.iut.vues.VuesHorsJeu;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

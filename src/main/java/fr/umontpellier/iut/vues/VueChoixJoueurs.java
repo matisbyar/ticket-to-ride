@@ -1,7 +1,6 @@
 package fr.umontpellier.iut.vues;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
+import fr.umontpellier.iut.vues.VuesHorsJeu.VueRegles;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;

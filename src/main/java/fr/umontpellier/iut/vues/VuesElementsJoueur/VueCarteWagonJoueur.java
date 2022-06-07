@@ -1,6 +1,7 @@
-package fr.umontpellier.iut.vues;
+package fr.umontpellier.iut.vues.VuesElementsJoueur;
 
 import fr.umontpellier.iut.ICouleurWagon;
+import fr.umontpellier.iut.vues.VueDuJeu;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

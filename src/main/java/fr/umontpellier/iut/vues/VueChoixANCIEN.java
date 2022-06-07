@@ -3,6 +3,7 @@ package fr.umontpellier.iut.vues;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.rails.Destination;
 import fr.umontpellier.iut.rails.CouleurWagon;
+import fr.umontpellier.iut.vues.panneauBas.VueReglages;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,7 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 
-public class VueChoix extends BorderPane {
+public class VueChoixANCIEN extends BorderPane {
 
     private IJeu jeu;
 
@@ -34,7 +35,7 @@ public class VueChoix extends BorderPane {
 
     private VueReglages vueReglages;
 
-    public VueChoix(IJeu jeu) {
+    public VueChoixANCIEN(IJeu jeu) {
         this.jeu = jeu;
 
         instruction = new Label();
@@ -65,9 +66,6 @@ public class VueChoix extends BorderPane {
         this.setTop(instruction);
         this.setCenter(cartes);
         this.setRight(passer);
-
-        this.setPadding(new Insets(20.0));
-        VueChoix.setAlignment(instruction, Pos.CENTER);
     }
 
     public void createBindings() {
@@ -88,12 +86,17 @@ public class VueChoix extends BorderPane {
                         piocheDestination.setVisible(true);
                         piocheWagon.setVisible(true);
                         cartesWagonsVisibles.setVisible(true);
+                        piocheDestination.setManaged(true);
+                        piocheWagon.setManaged(true);
+                        cartesWagonsVisibles.setManaged(true);
                     }
                     if (!change.getList().isEmpty()) {
                         piocheDestination.setVisible(false);
                         piocheWagon.setVisible(false);
                         cartesWagonsVisibles.setVisible(false);
-
+                        piocheDestination.setManaged(false);
+                        piocheWagon.setManaged(false);
+                        cartesWagonsVisibles.setManaged(false);
                     }
                 });
             }
@@ -137,5 +140,12 @@ public class VueChoix extends BorderPane {
             System.out.println("Passer a été selectionné.");
             jeu.passerAEteChoisi();
         });
+    }
+
+    private void styliser() {
+        this.setPadding(new Insets(20.0));
+        VueChoixANCIEN.setAlignment(instruction, Pos.CENTER);
+        VueChoixANCIEN.setAlignment(this.getCenter(), Pos.CENTER);
+        cartes.setStyle("-fx-background-color: red");
     }
 }

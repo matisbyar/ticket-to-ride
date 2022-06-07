@@ -1,4 +1,4 @@
-package fr.umontpellier.iut.vues;
+package fr.umontpellier.iut.vues.VuesElementsJoueur;
 
 import fr.umontpellier.iut.rails.Joueur;
 import javafx.geometry.Insets;
