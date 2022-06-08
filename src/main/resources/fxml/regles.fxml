@@ -3,7 +3,6 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
@@ -11,21 +10,54 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <fx:root alwaysOnTop="true" type="Stage" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
             <AnchorPane prefHeight="200" prefWidth="200">
                 <TabPane fx:id="tabPane" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <tabs>
-                        <Tab fx:id="but" text="But du Jeu">
-                             <Label text=
-                                     "Les règles"
-                             />
+                        <Tab fx:id="but" text="But du Jeu" closable="false">
+                            <VBox>
+                                <Text wrappingWidth="1000" text="Le principe du jeu est de construire des tronçons de chemin de fer prédéterminés entre des villes sur une carte de l'Europe. Lorsqu'un tel tronçon est construit on dit que la route entre les villes correspondantes est capturée. Au début de la partie chaque joueur reçoit des missions, que l'on appellera destinations, consistant à relier deux villes plus ou moins éloignées. Donc pour réaliser ces missions, les joueurs devront capturer des routes entre les différentes villes étapes." />
+                                <Text wrappingWidth="1000" text="Naturellement, pour capturer une route il faut payer ! Et pour cela, chaque joueur a besoin des cartes wagon. Ainsi, afin de capturer une route le joueur doit défausser autant de cartes wagon de la couleur de la route que d'espaces composant cette route. Une fois la route capturée, le joueur pose des pièces wagons sur cette route pour marquer sa prise." />
+                            </VBox>
+
                         </Tab>
-                        <Tab fx:id="cartes" text="Les cartes">
-                            <Text text="Cartes wagons"/>
-                            <Text text="Cartes destinations"/>
-                            <Text text="Les pioches"/>
+                        <Tab fx:id="cartes" text="Les cartes" closable="false">
+                            <VBox>
+                                <Label underline="true" text="Les cartes wagon"/>
+                                <Text wrappingWidth="1000" text="Il existe 8 types de cartes wagon différents en plus des locomotives. Les couleurs de chaque carte wagon correspondent aux couleurs des routes présentes sur le plateau connectant des villes – bleu, violet, orange, blanc, vert, jaune, noir et rouge."/>
+                                <Text wrappingWidth="1000" text="Lorsqu'un joueur choisit de prendre des cartes wagon, il peut en piocher jusqu'à deux par tour. Chacune de ces cartes doit être soit prise parmi les cinq faces visibles, soit tirée du dessus de la pioche. Si le joueur choisit de prendre une Locomotive face visible parmi les cinq cartes exposées, il ne peut piocher d'autre carte lors de ce tour." />
+
+                                <Label underline="true" text="Les locomotives"/>
+                                <Text wrappingWidth="1000" text="Les Locomotives sont des cartes 'Joker' : elles peuvent remplacer n'importe quelle couleur lors de la capture d'une route. Les Locomotives sont également nécessaires pour emprunter des Ferries."/>
+
+                                <Label underline="true" text="Les destinations"/>
+                                <Text wrappingWidth="1000" text="Un joueur peut utiliser son tour de jeu pour piocher des Destinations supplémentaires. Pour cela, il doit prendre 3 cartes sur le dessus de la pile de cartes Destination (le nombre de cartes restantes s'il y en a moins que 3). Il doit conserver au moins l’une des trois cartes piochées. Chaque carte non conservée est remise sous la pioche de Destinations."/>
+                                <Text wrappingWidth="1000" text="Les villes figurant sur une carte Destination sont le point de départ et d'arrivée d'un objectif secret que le joueur s'efforce d’atteindre en reliant ses villes avec des trains de sa couleur avant la fin de la partie. En cas de réussite, les points figurant sur la carte Destination sont gagnés par le joueur lorsque les objectifs sont révélés et comptabilisés en fin de partie. En cas d'échec, ces points sont déduits du score du joueur en fin de partie. Au cours d'une partie, un joueur peut piocher et conserver autant de cartes Destination qu’il le souhaite."/>
+                            </VBox>
+                        </Tab>
+                        <Tab fx:id="routes" text="Les routes" closable="false">
+                            <VBox>
+                                <Text wrappingWidth="1000" text="Une route est représentée sur le plateau par une ligne continue de rectangles colorés reliant deux villes adjacentes. Pour prendre possession d'une route, le joueur doit jouer des cartes wagon de la couleur correspondante, en quantité suffisante pour égaler le nombre d'espaces figurant sur la route convoitée."/>
+
+                                <Label underline="true" text="Les ferries"/>
+                                <Text wrappingWidth="1000" text="Les Ferries sont des routes spéciales, de couleur grise, reliant deux villes séparées par des eaux. Les lignes de Ferries sont facilement reconnaissables grâce au symbole de Locomotive figurant sur l'un au moins des espaces constituant cette route. Pour prendre possession d'une ligne de Ferries, un joueur doit jouer une carte Locomotive pour chaque symbole de Locomotive figurant sur la route."/>
+
+                                <Label underline="true" text="Les tunnels"/>
+                                <Text wrappingWidth="1000" text="Les Tunnels sont des routes spéciales, dont le prix à payer peut être supérieur à la longueur effective de cette route. Ainsi, le joueur annonce d'abord le nombre de cartes de la couleur requise comme à l'accoutumée. Puis, il retourne les trois premières cartes wagon du sommet de la pioche de cartes wagon. Pour chaque carte de la même couleur ou Locomotive révélée, le joueur doit rajouter une nouvelle carte wagon de même couleur (ou une Locomotive au choix). C'est uniquement une fois celles-ci rajoutées que le joueur peut prendre possession du Tunnel."/>
+                            </VBox>
+                        </Tab>
+                        <Tab fx:id="gares" text="Les gares" closable="false">
+                            <Text wrappingWidth="1000" text="Une gare permet à son propriétaire d'emprunter une et une seule des routes appartenant à l'un de ses opposants pour relier des villes. Les gares peuvent être construites sur n'importe quelle ville qui n'en contient pas. Chaque joueur peut en construire une seule par tour. Le nombre de gares par joueur est de 3 maximum."/>
+                        </Tab>
+                        <Tab fx:id="fin" text="Fin du jeu" closable="false">
+                            <VBox>
+                                <Text wrappingWidth="1000" text="Lorsque la réserve de wagons d'un joueur est de 0, 1 ou 2 wagons après avoir joué son tour, chaque joueur, en incluant celui-ci, joue un dernier tour. A L'issue de celui-ci, le jeu s'arrête et procède au décompte des points"/>
+                                <ImageView id="CalculRoutes"/>
+                                <ImageView id="CalculTotal"/>
+                            </VBox>
                         </Tab>
                     </tabs></TabPane>
                 <Button fx:id="ok" alignment="BOTTOM_CENTER" mnemonicParsing="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" onAction="#clickOK" text="OK" />
