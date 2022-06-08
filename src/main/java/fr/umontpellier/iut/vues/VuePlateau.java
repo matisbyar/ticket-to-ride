@@ -1,6 +1,14 @@
 package fr.umontpellier.iut.vues;
 
+import fr.umontpellier.iut.IRoute;
+import fr.umontpellier.iut.IVille;
+import fr.umontpellier.iut.rails.Route;
+import fr.umontpellier.iut.rails.Ville;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.StringBinding;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -35,7 +43,6 @@ public class VuePlateau extends StackPane {
     @FXML
     public void choixRouteOuVille(MouseEvent event) {
         ((VueDuJeu) getScene().getRoot()).getJeu().uneVilleOuUneRouteAEteChoisie(((Node) event.getSource()).getId());
-        ((Node) event.getSource()).setStyle("-fx-fill: ".concat(VueDuJeu.getCouleurCourante(((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().getValue())).concat(";"));
     }
 
     @FXML
@@ -47,6 +54,47 @@ public class VuePlateau extends StackPane {
 
     public void creerBindings() {
         bindRedimensionPlateau();
+
+        for (Object ville : ((VueDuJeu) getScene().getRoot()).getJeu().getVilles()) {
+            for (Node cercle : villes.getChildren()) {
+                if (((IVille) ville).getNom().equals(cercle.getId())) {
+                    StringBinding proprietaire = new StringBinding() {
+                        {
+                            this.bind(((IVille) ville).proprietaireProperty());
+                        }
+
+                        @Override
+                        protected String computeValue() {
+                            if (((Ville) ville).getProprietaire() == null) return "Transparent";
+                            return VueDuJeu.getCouleurCourante(((IVille) ville).proprietaireProperty().get());
+                        }
+                    };
+                    cercle.styleProperty().bind(Bindings.concat("-fx-fill: ", proprietaire));
+                }
+            }
+        }
+
+
+        for (Object route : ((VueDuJeu) getScene().getRoot()).getJeu().getRoutes()) {
+            for (Node groupe : routes.getChildren()) {
+                if (((IRoute) route).getNom().equals(groupe.getId())) {
+                    for (Node rect : ((Group) groupe).getChildren()) {
+                        StringBinding proprietaire = new StringBinding() {
+                            {
+                                this.bind(((IRoute) route).proprietaireProperty());
+                            }
+
+                            @Override
+                            protected String computeValue() {
+                                if (((Route) route).getProprietaire() == null) return "Transparent";
+                                return VueDuJeu.getCouleurCourante(((IRoute) route).proprietaireProperty().get());
+                            }
+                        };
+                        rect.styleProperty().bind(Bindings.concat("-fx-fill: ", proprietaire));
+                    }
+                }
+            }
+        }
     }
 
     private void bindRedimensionPlateau() {
