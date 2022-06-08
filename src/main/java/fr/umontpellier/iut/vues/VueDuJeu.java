@@ -35,7 +35,7 @@ public class VueDuJeu extends BorderPane {
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
 
-        plateau = new VuePlateau();
+        plateau = new VuePlateau(this);
         autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
         panneauBas = new VuePanneauDeControles(jeu);
 
@@ -125,5 +125,15 @@ public class VueDuJeu extends BorderPane {
         this.getLeft().setManaged(true);
         this.getRight().setVisible(true);
         this.getRight().setManaged(true);
+    }
+
+    public String getCouleurCourante(IJoueur joueur) {
+        return switch (joueur.getCouleur()) {
+            case JAUNE -> "yellow";
+            case ROUGE -> "red";
+            case BLEU -> "blue";
+            case VERT -> "green";
+            case ROSE -> "pink";
+        };
     }
 }

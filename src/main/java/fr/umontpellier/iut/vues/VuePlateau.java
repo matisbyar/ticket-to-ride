@@ -23,7 +23,10 @@ import java.io.IOException;
  */
 public class VuePlateau extends StackPane {
 
-    public VuePlateau() {
+    private VueDuJeu vueDuJeu;
+
+    public VuePlateau(VueDuJeu vueDuJeu) {
+        this.vueDuJeu = vueDuJeu;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/plateau.fxml"));
             loader.setRoot(this);
@@ -37,6 +40,8 @@ public class VuePlateau extends StackPane {
     @FXML
     public void choixRouteOuVille(MouseEvent event) {
         ((VueDuJeu) getScene().getRoot()).getJeu().uneVilleOuUneRouteAEteChoisie(((Node) event.getSource()).getId());
+        ((Node) event.getSource()).setStyle("-fx-fill: ".concat(this.vueDuJeu.getCouleurCourante(((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().getValue())).concat(";"));
+        //System.out.println("-fx-fill: ".concat(this.vueDuJeu.getCouleurCourante(((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().getValue())).concat(";"));
     }
 
     @FXML
