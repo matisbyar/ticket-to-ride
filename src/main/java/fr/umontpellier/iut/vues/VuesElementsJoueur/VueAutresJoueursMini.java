@@ -42,7 +42,6 @@ public class VueAutresJoueursMini extends VBox {
 
         nom.setStyle("-fx-font-size: 16");
         score.setStyle("-fx-font-family: Courier");
-        vousJouez.setStyle("font-weight: 30px");
         this.setStyle("-fx-background-radius: 20px");
         this.setAlignment(Pos.TOP_CENTER);
         this.setPadding(new Insets(5));
@@ -92,7 +91,7 @@ public class VueAutresJoueursMini extends VBox {
         if (c.toString().equals("ROUGE")) return "-fx-background-color: rgba(255,0,0,0.48)";
         if (c.toString().equals("BLEU")) return "-fx-background-color: rgb(104,104,220)";
         if (c.toString().equals("VERT")) return "-fx-background-color: rgba(49,187,49,0.63)";
-        if (c.toString().equals("ROSE")) return "-fx-background-color: rgb(223,106,236)";
+        if (c.toString().equals("ROSE")) return "-fx-background-color: rgba(223,106,236,0.63)";
         return "-fx-background-color: transparent";
     }
 }

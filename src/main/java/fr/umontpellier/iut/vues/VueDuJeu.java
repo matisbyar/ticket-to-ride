@@ -3,7 +3,6 @@ package fr.umontpellier.iut.vues;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.vues.VuesElementsJoueur.VueAutresJoueurs;
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Region;
-import javafx.util.Duration;
 
 /**
  * Cette classe correspond à la fenêtre principale de l'application.
@@ -34,8 +32,9 @@ public class VueDuJeu extends BorderPane {
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
+        colorerJoueurs();
 
-        plateau = new VuePlateau(this);
+        plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
         panneauBas = new VuePanneauDeControles(jeu);
 
@@ -44,8 +43,8 @@ public class VueDuJeu extends BorderPane {
         // Attribution des positions
         this.setCenter(plateau);
         this.setRight(autresJoueurs);
-        this.setBottom(panneauBas);
         this.setLeft(new VueJoueurCourant(jeu));
+        this.setBottom(panneauBas);
 
         debug(0);
 
@@ -88,6 +87,10 @@ public class VueDuJeu extends BorderPane {
             this.getCenter().setStyle("-fx-background-color: rgba(255,255,0,0.56)");
         }
         if (priorite > 1) {
+            this.getBottom().setVisible(false);
+            this.getBottom().setManaged(false);
+        }
+        if (priorite > 2) {
             this.getLeft().setManaged(false);
             this.getLeft().setVisible(false);
             this.getRight().setManaged(false);
@@ -127,7 +130,7 @@ public class VueDuJeu extends BorderPane {
         this.getRight().setManaged(true);
     }
 
-    public String getCouleurCourante(IJoueur joueur) {
+    public static String getCouleurCourante(IJoueur joueur) {
         return switch (joueur.getCouleur()) {
             case JAUNE -> "yellow";
             case ROUGE -> "red";
@@ -135,5 +138,11 @@ public class VueDuJeu extends BorderPane {
             case VERT -> "green";
             case ROSE -> "pink";
         };
+    }
+
+    public void colorerJoueurs() {
+        for (int i = 0; i < jeu.getJoueurs().size(); i++) {
+            jeu.getJoueurs().get(i).setCouleur(VueChoixJoueurs.couleursJoueurs.get(i));
+        }
     }
 }

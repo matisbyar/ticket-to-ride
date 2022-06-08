@@ -5,8 +5,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.*?>
-<fx:root stylesheets="@../css/style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="855.66" prefWidth="1326.78" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <ImageView fx:id="image" fitHeight="855.66" fitWidth="1326.78" pickOnBounds="true" preserveRatio="true">
+<fx:root stylesheets="@../css/style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.00" prefWidth="1326.78" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <ImageView fx:id="image" fitHeight="600.00" fitWidth="1326.78" pickOnBounds="true" preserveRatio="true">
         <Image url="@../images/euMap.jpg"/>
     </ImageView>
     <Group fx:id="routes">

@@ -1,5 +1,6 @@
 package fr.umontpellier.iut.vues;
 
+import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.vues.VuesHorsJeu.VueRegles;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ public class VueChoixJoueurs extends Stage {
     public ObservableList<String> nomsJoueursProperty() {
         return nomsJoueurs;
     }
+    public static ArrayList<IJoueur.Couleur> couleursJoueurs;
 
     @FXML
     private TextField rose;
@@ -52,6 +54,10 @@ public class VueChoixJoueurs extends Stage {
         return nomsJoueurs;
     }
 
+    public static ArrayList<IJoueur.Couleur> getCouleursJoueurs() {
+        return couleursJoueurs;
+    }
+
     public VueChoixJoueurs() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/choixJoueurs.fxml"));
@@ -62,6 +68,7 @@ public class VueChoixJoueurs extends Stage {
             e.printStackTrace();
         }
         nomsJoueurs = FXCollections.observableArrayList();
+        couleursJoueurs = new ArrayList<>();
     }
 
     /**
@@ -69,13 +76,6 @@ public class VueChoixJoueurs extends Stage {
      */
     public void setNomsDesJoueursDefinisListener(ListChangeListener<String> quandLesNomsDesJoueursSontDefinis) {
         nomsJoueurs.addListener(quandLesNomsDesJoueursSontDefinis);
-    }
-
-    /**
-     * Définit l'action à exécuter lorsque le nombre de participants change
-     */
-    protected void setChangementDuNombreDeJoueursListener(ChangeListener<Integer> quandLeNombreDeJoueursChange) {
-
     }
 
     /**
@@ -124,11 +124,26 @@ public class VueChoixJoueurs extends Stage {
     @FXML
     public void clickJouer() {
         if (nbLabelVides() <= 2) {
-            if (!rose.getText().isEmpty()) nomsJoueurs.add(rose.getText());
-            if (!jaune.getText().isEmpty()) nomsJoueurs.add(jaune.getText());
-            if (!vert.getText().isEmpty()) nomsJoueurs.add(vert.getText());
-            if (!rouge.getText().isEmpty()) nomsJoueurs.add(rouge.getText());
-            if (!bleu.getText().isEmpty()) nomsJoueurs.add(bleu.getText());
+            if (!rose.getText().isEmpty()) {
+                couleursJoueurs.add(IJoueur.Couleur.ROSE);
+                nomsJoueurs.add(rose.getText());
+            }
+            if (!jaune.getText().isEmpty()) {
+                couleursJoueurs.add(IJoueur.Couleur.JAUNE);
+                nomsJoueurs.add(jaune.getText());
+            }
+            if (!vert.getText().isEmpty()) {
+                couleursJoueurs.add(IJoueur.Couleur.VERT);
+                nomsJoueurs.add(vert.getText());
+            }
+            if (!rouge.getText().isEmpty()) {
+                couleursJoueurs.add(IJoueur.Couleur.ROUGE);
+                nomsJoueurs.add(rouge.getText());
+            }
+            if (!bleu.getText().isEmpty()) {
+                couleursJoueurs.add(IJoueur.Couleur.BLEU);
+                nomsJoueurs.add(bleu.getText());
+            }
             setListeDesNomsDeJoueurs();
         } else {
             showAvertissement();

@@ -22,4 +22,5 @@ public interface IJoueur {
     Couleur getCouleur();
     int getNbGares();
     int getScore();
+    void setCouleur(Couleur couleur);
 }

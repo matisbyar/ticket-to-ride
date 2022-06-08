@@ -1,14 +1,12 @@
 package fr.umontpellier.iut.vues;
 
 import javafx.beans.binding.DoubleBinding;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -23,10 +21,7 @@ import java.io.IOException;
  */
 public class VuePlateau extends StackPane {
 
-    private VueDuJeu vueDuJeu;
-
-    public VuePlateau(VueDuJeu vueDuJeu) {
-        this.vueDuJeu = vueDuJeu;
+    public VuePlateau() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/plateau.fxml"));
             loader.setRoot(this);
@@ -40,8 +35,7 @@ public class VuePlateau extends StackPane {
     @FXML
     public void choixRouteOuVille(MouseEvent event) {
         ((VueDuJeu) getScene().getRoot()).getJeu().uneVilleOuUneRouteAEteChoisie(((Node) event.getSource()).getId());
-        ((Node) event.getSource()).setStyle("-fx-fill: ".concat(this.vueDuJeu.getCouleurCourante(((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().getValue())).concat(";"));
-        //System.out.println("-fx-fill: ".concat(this.vueDuJeu.getCouleurCourante(((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().getValue())).concat(";"));
+        ((Node) event.getSource()).setStyle("-fx-fill: ".concat(VueDuJeu.getCouleurCourante(((VueDuJeu) getScene().getRoot()).getJeu().joueurCourantProperty().getValue())).concat(";"));
     }
 
     @FXML
@@ -61,9 +55,6 @@ public class VuePlateau extends StackPane {
 //        Les dimensions de l'image varient avec celle de la scène
         image.fitWidthProperty().bind(getScene().widthProperty());
         image.fitHeightProperty().bind(getScene().heightProperty());
-
-        // this.prefHeightProperty().bind(image.fitHeightProperty());
-        // this.prefWidthProperty().bind(image.fitWidthProperty());
 
          //image.setVisible(false);
          //this.setStyle("-fx-background-color: purple");
@@ -179,5 +170,4 @@ public class VuePlateau extends StackPane {
             }
         });
     }
-
 }

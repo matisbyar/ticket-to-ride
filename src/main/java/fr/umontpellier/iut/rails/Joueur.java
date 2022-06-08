@@ -106,6 +106,14 @@ public class Joueur implements IJoueur {
         return score.getValue();
     }
 
+    /**
+     * Rajout de notre part. Lorsqu'une partie est lancée, nous laissons le choix au joueur d'une couleur. Ce setter permet tout simplement de prendre en compte de la demande.
+     * @param couleur
+     */
+    public void setCouleur(Couleur couleur) {
+        this.couleur = couleur;
+    }
+
     public List<Destination> getDestinations() {
         return destinations;
     }

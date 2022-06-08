@@ -10,12 +10,11 @@ import javafx.scene.layout.HBox;
 
 public class VueReglages extends HBox {
 
-    private Button pause, regles, logs;
+    private Button regles, logs;
     private ToggleButton masquer;
     private VueRegles vueRegles;
 
     public VueReglages() {
-        pause = new Button("Pause");
         regles = new Button("Règles");
         logs = new Button("Log");
         masquer = new ToggleButton("Carte");
@@ -24,7 +23,7 @@ public class VueReglages extends HBox {
 
         creerBindings();
 
-        this.getChildren().addAll(pause, regles, logs, masquer);
+        this.getChildren().addAll(regles, logs, masquer);
 
         styliser();
     }
@@ -54,7 +53,5 @@ public class VueReglages extends HBox {
         this.setAlignment(Pos.CENTER);
 
         // Couleurs
-        this.setStyle("-fx-border-color: gray");
-        this.setStyle("-fx-background-color: white");
     }
 }

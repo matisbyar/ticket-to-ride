@@ -1,6 +1,7 @@
 package fr.umontpellier.iut;
 
 import fr.umontpellier.iut.rails.ServiceDuJeu;
+import fr.umontpellier.iut.vues.AutreVueDuJeu;
 import fr.umontpellier.iut.vues.VueChoixJoueurs;
 import fr.umontpellier.iut.vues.VueDuJeu;
 import javafx.application.Application;
@@ -23,7 +24,7 @@ public class RailsIHM extends Application {
     private Stage primaryStage;
     private ServiceDuJeu serviceDuJeu;
 
-    private boolean avecVueChoixJoueurs = false;
+    private boolean avecVueChoixJoueurs = true;
 
     @Override
     public void start(Stage primaryStage) {

@@ -4,7 +4,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" stylesheets="@../css/style.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" stylesheets="@../css/style.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="147.0" prefWidth="150.0">
          <children>
