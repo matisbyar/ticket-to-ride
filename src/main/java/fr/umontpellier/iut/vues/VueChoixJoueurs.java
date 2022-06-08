@@ -2,7 +2,6 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.vues.VuesHorsJeu.VueRegles;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -26,9 +25,11 @@ import java.util.List;
 public class VueChoixJoueurs extends Stage {
 
     private ObservableList<String> nomsJoueurs;
+
     public ObservableList<String> nomsJoueursProperty() {
         return nomsJoueurs;
     }
+
     public static ArrayList<IJoueur.Couleur> couleursJoueurs;
 
     @FXML
@@ -52,10 +53,6 @@ public class VueChoixJoueurs extends Stage {
 
     public List<String> getNomsJoueurs() {
         return nomsJoueurs;
-    }
-
-    public static ArrayList<IJoueur.Couleur> getCouleursJoueurs() {
-        return couleursJoueurs;
     }
 
     public VueChoixJoueurs() {
@@ -84,13 +81,12 @@ public class VueChoixJoueurs extends Stage {
      */
     protected void setListeDesNomsDeJoueurs() {
         ArrayList<String> tempNamesList = new ArrayList<>();
-        for (int i = 1; i <= getNombreDeJoueurs() ; i++) {
+        for (int i = 1; i <= getNombreDeJoueurs(); i++) {
             String name = getJoueurParNumero(i);
             if (name == null || name.equals("")) {
                 tempNamesList.clear();
                 break;
-            }
-            else
+            } else
                 tempNamesList.add(name);
         }
         if (!tempNamesList.isEmpty()) {
@@ -115,6 +111,7 @@ public class VueChoixJoueurs extends Stage {
 
     /**
      * Retourne le nom que l'utilisateur a renseigné pour le ième participant à la partie
+     *
      * @param playerNumber : le numéro du participant
      */
     protected String getJoueurParNumero(int playerNumber) {

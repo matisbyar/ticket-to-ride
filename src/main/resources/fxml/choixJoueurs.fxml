@@ -63,7 +63,7 @@
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
-                                                   <Image url="@../../../../ressources/images/images/avatar-ROSE.png" />
+                                                   <Image url="@../images/avatars/avatar-ROSE.png"  />
                                                 </image>
                                                 <viewport>
                                                    <Rectangle2D />
@@ -86,9 +86,9 @@
                                        </VBox>
                                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
-                                             <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <ImageView  fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
-                                                   <Image url="@../../../../ressources/images/images/avatar-JAUNE.png" />
+                                                   <Image url="@../images/avatars/avatar-JAUNE.png"  />
                                                 </image>
                                                 <viewport>
                                                    <Rectangle2D />
@@ -113,7 +113,7 @@
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
-                                                   <Image url="@../../../../ressources/images/images/avatar-VERT.png" />
+                                                   <Image url="@../images/avatars/avatar-VERT.png"  />
                                                 </image>
                                                 <viewport>
                                                    <Rectangle2D />
@@ -136,9 +136,9 @@
                                        </VBox>
                                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
-                                             <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <ImageView  fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
-                                                   <Image url="@../../../../ressources/images/images/avatar-ROUGE.png" />
+                                                   <Image url="@../images/avatars/avatar-ROUGE.png"  />
                                                 </image>
                                                 <viewport>
                                                    <Rectangle2D />
@@ -162,12 +162,7 @@
                                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="180.0">
                                           <children>
                                              <ImageView fitHeight="225.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                                <image>
-                                                   <Image url="@../../../../ressources/images/images/avatar-BLEU.png" />
-                                                </image>
-                                                <viewport>
-                                                   <Rectangle2D />
-                                                </viewport>
+                                                <Image url="@../images/avatars/avatar-BLEU.png"  />
                                              </ImageView>
                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bleu" textAlignment="CENTER">
                                                 <VBox.margin>
