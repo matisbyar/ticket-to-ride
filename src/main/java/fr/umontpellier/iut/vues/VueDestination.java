@@ -23,6 +23,8 @@ public class VueDestination extends Button {
     private Label nom;
 
     public VueDestination(IDestination destination) {
+        this.getStylesheets().add("/css/styleCustom.css");
+
         this.destination = destination;
         String[] villes = destination.toString().split(" ");
         ImageView image = new ImageView(new Image("file:ressources/images/missions/eu-".concat(villes[0].toLowerCase().concat(villes[1].toLowerCase()).concat(villes[2].toLowerCase())).concat(".png")));

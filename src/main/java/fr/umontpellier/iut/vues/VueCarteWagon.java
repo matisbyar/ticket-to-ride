@@ -2,6 +2,7 @@ package fr.umontpellier.iut.vues;
 
 import fr.umontpellier.iut.ICouleurWagon;
 import fr.umontpellier.iut.rails.CouleurWagon;
+import javafx.css.Stylesheet;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,6 +11,7 @@ import javafx.scene.layout.Pane;
 
 import java.lang.invoke.StringConcatFactory;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Cette classe représente la vue d'une carte Wagon.
@@ -21,6 +23,8 @@ public class VueCarteWagon extends Button {
     private ICouleurWagon couleurWagon;
 
     public VueCarteWagon(ICouleurWagon couleurWagon) {
+        this.getStylesheets().add("/css/styleCustom.css");
+
         this.couleurWagon = couleurWagon;
         ImageView image = new ImageView(new Image("images/cartesWagons/carte-wagon-".concat(couleurWagon.toString().toUpperCase(Locale.ROOT).concat(".png"))));
         image.setFitWidth(124);
