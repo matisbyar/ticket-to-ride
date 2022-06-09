@@ -1,7 +1,6 @@
 package fr.umontpellier.iut;
 
 import fr.umontpellier.iut.rails.ServiceDuJeu;
-import fr.umontpellier.iut.vues.AutreVueDuJeu;
 import fr.umontpellier.iut.vues.VueChoixJoueurs;
 import fr.umontpellier.iut.vues.VueDuJeu;
 import javafx.application.Application;
