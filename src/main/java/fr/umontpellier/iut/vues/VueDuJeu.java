@@ -132,11 +132,11 @@ public class VueDuJeu extends BorderPane {
 
     public static String getCouleurCourante(IJoueur joueur) {
         return switch (joueur.getCouleur()) {
-            case JAUNE -> "yellow";
-            case ROUGE -> "red";
-            case BLEU -> "blue";
-            case VERT -> "green";
-            case ROSE -> "pink";
+            case JAUNE -> "rgba(255,255,0,0.56)";
+            case ROUGE -> "rgba(255,0,0,0.48)";
+            case BLEU -> "rgba(104,104,220, 0.65)";
+            case VERT -> "rgba(49,187,49,0.63)";
+            case ROSE -> "rgba(223,106,236,0.63)";
         };
     }
 
