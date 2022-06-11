@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class VueChoix extends VBox {
 
@@ -118,9 +120,11 @@ public class VueChoix extends VBox {
         cartes.setAlignment(Pos.CENTER);
 
         // Spacing
-        this.setSpacing(10);
+        this.setSpacing(5);
         cartes.setSpacing(20);
         cartesDestination.setSpacing(10);
         cartesWagonsVisibles.setSpacing(10);
+
+        instruction.setFont(Font.font("Verdana", FontWeight.SEMI_BOLD, 14));
     }
 }

@@ -1,0 +1,31 @@
+.panneau {
+    -fx-background-color: white;
+    -fx-background-radius: 19px;
+    -fx-border-color: #bdbdbd;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+
+    -fx-border-insets: 10px 20px 10px 20px;
+    -fx-background-insets: 10px 20px 10px 20px;
+}
+
+.carte {
+    -fx-background-color: white;
+    -fx-background-radius: 19px;
+    -fx-border-color: #bdbdbd;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
+
+.controles {
+    -fx-background-color: white;
+    -fx-background-radius: 19px;
+    -fx-border-color: #bdbdbd;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+
+    -fx-border-insets: 10px 200px 10px 200px;
+    -fx-background-insets: 10px 200px 10px 200px;
+
+    -fx-alignment: center;
+}

@@ -1,4 +1,4 @@
-package fr.umontpellier.iut.vues;
+package fr.umontpellier.iut.vues.VuesJoueurCourant;
 
 import fr.umontpellier.iut.IDestination;
 import fr.umontpellier.iut.IJeu;
@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,12 +32,15 @@ public class VueJoueurCourant extends VBox {
     private IJeu jeu;
     private ImageView avatar;
     private Image image;
-    private Label nom, score, wagons, gares, statut, mesMissions, mesCartesWagon;
-    private VBox destinations, cartesWagons;
+    private Label nom, score, wagons, gares, statut;
     public ChangeListener<IJoueur> changementJoueur;
+
+    private VueCartesJoueur vueCartesJoueur;
 
     public VueJoueurCourant(IJeu jeu) {
         this.jeu = jeu;
+        this.getStylesheets().add("/css/stylePanneau.css");
+        this.getStyleClass().add("panneau");
 
         avatar = new ImageView();
         nom = new Label();
@@ -43,18 +48,13 @@ public class VueJoueurCourant extends VBox {
         wagons = new Label();
         gares = new Label();
         statut = new Label("À vous de jouer !");
-        mesMissions = new Label();
-        mesCartesWagon = new Label();
-        destinations = new VBox();
-        cartesWagons = new VBox();
+        vueCartesJoueur = new VueCartesJoueur(jeu);
 
         styliser();
 
         creerBindings();
 
-        mesCartesWagon.setPadding(new Insets(20, 0, 0, 0));
-
-        this.getChildren().addAll(avatar, nom, score, wagons, gares, statut, mesMissions, destinations, mesCartesWagon, cartesWagons);
+        this.getChildren().addAll(avatar, nom, score, wagons, gares, statut);
     }
 
     public void creerBindings() {
@@ -66,47 +66,22 @@ public class VueJoueurCourant extends VBox {
                     score.setText("Score : " + nouveauJoueur.getScore());
                     wagons.setText("Wagons restants : " + nouveauJoueur.getNbWagons());
                     gares.setText("Gares : " + nouveauJoueur.getNbGares());
-                    mesMissions.setText("Mes destinations (" + nouveauJoueur.getDestinations().size() + ")");
-                    mesCartesWagon.setText("Mes cartes wagon (" + nouveauJoueur.getCartesWagon().size() + ")");
 
                     image = new Image("images/avatars/avatar-".concat(nouveauJoueur.getCouleur().toString().toUpperCase(Locale.ROOT).concat(".png")));
                     avatar.setImage(image);
-
-                    destinations.getChildren().clear();
-                    for (IDestination carte: nouveauJoueur.getDestinations()) {
-                        destinations.getChildren().add(new Label(carte.getNom()));
-                    }
-
-                    cartesWagons.getChildren().clear();
-                    afficheCartes(nouveauJoueur.getCartesWagon());
                 });
             }
         };
         jeu.joueurCourantProperty().addListener(changementJoueur);
     }
 
-    public void afficheCartes(List<CouleurWagon> destinations) {
-        // On récupère à l'aide de la méthode compteur(), la Collection Map associant une CouleurWagon et son nombre d'exemplaires
-        Map<CouleurWagon, Integer> comptage = CouleurWagon.compteur(destinations);
-        // La Set va nous permettre de faire une boucle foreach, et de récupérer individuellement la Key et la Value (cf. notes de commit Affichage cartes wagon)
-        Set<Map.Entry<CouleurWagon, Integer>> occurrences = comptage.entrySet();
-
-        for (Map.Entry<CouleurWagon, Integer> occurrence: occurrences) {
-            CouleurWagon couleur = occurrence.getKey();
-            int quantite = occurrence.getValue();
-
-            if (quantite != 0 && couleur != CouleurWagon.GRIS) cartesWagons.getChildren().add(new VueCarteWagonJoueur(couleur, quantite));
-        }
-    }
-
     private void styliser() {
         // Alignement
         this.setAlignment(Pos.TOP_CENTER);
-        cartesWagons.setAlignment(Pos.TOP_CENTER);
 
         // Padding
-        this.setPadding(new Insets(20.0));
-        cartesWagons.setSpacing(10);
+        this.setPadding(new Insets(20));
+        vueCartesJoueur.setPadding(new Insets(20));
 
         // Relatif à l'avatar
         avatar.setFitWidth(140);
@@ -114,8 +89,9 @@ public class VueJoueurCourant extends VBox {
         avatar.setPreserveRatio(true);
 
         // Font size
-        nom.setStyle("-fx-font-size: 16px");
-        mesMissions.setStyle("-fx-font-size: 16px");
-        mesCartesWagon.setStyle("-fx-font-size: 16px");
+        nom.setFont(Font.font("Georgia", FontWeight.BOLD, 16));
+        score.setFont(Font.font("Courier New", 13));
+        wagons.setFont(Font.font("Courier New", 13));
+        gares.setFont(Font.font("Courier New", 13));
     }
 }

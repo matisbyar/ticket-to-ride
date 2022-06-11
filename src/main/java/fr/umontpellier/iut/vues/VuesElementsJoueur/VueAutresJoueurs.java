@@ -19,6 +19,9 @@ public class VueAutresJoueurs extends VBox {
     public VueAutresJoueurs(IJeu jeu, List<Joueur> listeJoueurs) {
         for (Joueur joueur : listeJoueurs) getChildren().add(new VueAutresJoueursMini(jeu, joueur));
 
+        this.getStylesheets().add("/css/stylePanneau.css");
+        this.getStyleClass().add("panneau");
+
         this.setPadding(new Insets(20.0));
     }
 

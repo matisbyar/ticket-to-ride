@@ -21,6 +21,8 @@ public class VuePanneauDeControles extends GridPane {
 
     public VuePanneauDeControles(IJeu jeu) {
         this.jeu = jeu;
+        this.getStylesheets().add("/css/stylePanneau.css");
+        this.getStyleClass().add("controles");
 
         choix = new VueChoix(jeu);
         reglages = new VueReglages();

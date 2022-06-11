@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.Locale;
 
@@ -28,7 +30,7 @@ public class VueAutresJoueursMini extends VBox {
         this.jeu = jeu;
         this.joueur = j;
 
-        this.setSpacing(5.0);
+        this.setSpacing(2.0);
 
         avatar = new ImageView(new Image("images/avatars/avatar-".concat(j.getCouleur().toString().toUpperCase(Locale.ROOT).concat(".png"))));
         avatar.setFitWidth(140);
@@ -40,8 +42,10 @@ public class VueAutresJoueursMini extends VBox {
         wagons = new Label("Wagons : " + j.getNbWagons());
         vousJouez = new Label("Est en train de jouer");
 
-        nom.setStyle("-fx-font-size: 16");
-        score.setStyle("-fx-font-family: Courier");
+        nom.setFont(Font.font("Georgia", FontWeight.BOLD, 16));
+        score.setFont(Font.font("Courier New", 13));
+        wagons.setFont(Font.font("Courier New", 13));
+        vousJouez.setFont(Font.font("Courier New", 13));
         this.setStyle("-fx-background-radius: 20px");
         this.setAlignment(Pos.TOP_CENTER);
         this.setPadding(new Insets(5));

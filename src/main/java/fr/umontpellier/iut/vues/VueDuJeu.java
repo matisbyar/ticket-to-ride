@@ -3,6 +3,8 @@ package fr.umontpellier.iut.vues;
 import fr.umontpellier.iut.IJeu;
 import fr.umontpellier.iut.IJoueur;
 import fr.umontpellier.iut.vues.VuesElementsJoueur.VueAutresJoueurs;
+import fr.umontpellier.iut.vues.VuesJoueurCourant.VueJoueurCourant;
+import fr.umontpellier.iut.vues.VuesJoueurCourant.VuePanneauJoueurCourant;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,7 +34,7 @@ public class VueDuJeu extends BorderPane {
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
-        colorerJoueurs();
+        // colorerJoueurs();
 
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
@@ -43,13 +45,13 @@ public class VueDuJeu extends BorderPane {
         // Attribution des positions
         this.setCenter(plateau);
         this.setRight(autresJoueurs);
-        this.setLeft(new VueJoueurCourant(jeu));
+        this.setLeft(new VuePanneauJoueurCourant(jeu));
         this.setBottom(panneauBas);
 
         debug(0);
 
         this.setStyle("-fx-background-color: #C8D1D6");
-        plateau.setPadding(new Insets(30.0));
+        plateau.setPadding(new Insets(50.0));
         plateau.setAlignment(Pos.CENTER);
         //panneauBas.setPadding(new Insets(0, 20, 0, 0));
 
@@ -106,7 +108,7 @@ public class VueDuJeu extends BorderPane {
         column.setPercentWidth(25);
         panneauBas.getColumnConstraints().add(column);
         column = new ColumnConstraints();
-        column.setPercentWidth(100);
+        column.setPercentWidth(150);
         panneauBas.getColumnConstraints().add(column);
         column = new ColumnConstraints();
         column.setPercentWidth(25);

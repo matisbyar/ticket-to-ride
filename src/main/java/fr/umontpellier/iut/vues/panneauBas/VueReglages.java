@@ -10,20 +10,19 @@ import javafx.scene.layout.HBox;
 
 public class VueReglages extends HBox {
 
-    private Button regles, logs;
+    private Button regles;
     private ToggleButton masquer;
     private VueRegles vueRegles;
 
     public VueReglages() {
         regles = new Button("Règles");
-        logs = new Button("Log");
         masquer = new ToggleButton("Carte");
 
         vueRegles = new VueRegles();
 
         creerBindings();
 
-        this.getChildren().addAll(regles, logs, masquer);
+        this.getChildren().addAll(regles, masquer);
 
         styliser();
     }
