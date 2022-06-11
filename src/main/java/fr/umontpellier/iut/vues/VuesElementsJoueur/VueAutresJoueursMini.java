@@ -30,6 +30,9 @@ public class VueAutresJoueursMini extends VBox {
         this.jeu = jeu;
         this.joueur = j;
 
+        this.getStylesheets().add("/css/stylePanneau.css");
+        this.getStyleClass().add("panneau");
+
         this.setSpacing(2.0);
 
         avatar = new ImageView(new Image("images/avatars/avatar-".concat(j.getCouleur().toString().toUpperCase(Locale.ROOT).concat(".png"))));
@@ -81,10 +84,20 @@ public class VueAutresJoueursMini extends VBox {
     }
 
     public void colorer() {
-        this.setStyle("-fx-background-color: " + VueDuJeu.getCouleurCourante(joueur));
+        this.setStyle("-fx-background-color: " + getCouleurCourante(joueur));
     }
 
     public void decolorer() {
-        this.setStyle("-fx-background-color: transparent");
+        this.setStyle("-fx-background-color: white");
+    }
+
+    public String getCouleurCourante(IJoueur joueur) {
+        return switch (joueur.getCouleur()) {
+            case JAUNE -> "rgb(255,255,139)";
+            case ROUGE -> "rgb(255,124,124)";
+            case BLEU -> "rgb(143,143,255)";
+            case VERT -> "rgb(139,222,139)";
+            case ROSE -> "rgb(255,156,236)";
+        };
     }
 }

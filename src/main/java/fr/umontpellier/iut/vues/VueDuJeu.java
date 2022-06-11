@@ -34,7 +34,7 @@ public class VueDuJeu extends BorderPane {
 
     public VueDuJeu(IJeu jeu) {
         this.jeu = jeu;
-        // colorerJoueurs();
+        colorerJoueurs();
 
         plateau = new VuePlateau();
         autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
@@ -108,7 +108,7 @@ public class VueDuJeu extends BorderPane {
         column.setPercentWidth(25);
         panneauBas.getColumnConstraints().add(column);
         column = new ColumnConstraints();
-        column.setPercentWidth(150);
+        column.setPercentWidth(100);
         panneauBas.getColumnConstraints().add(column);
         column = new ColumnConstraints();
         column.setPercentWidth(25);
