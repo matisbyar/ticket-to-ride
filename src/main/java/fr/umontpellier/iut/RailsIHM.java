@@ -51,7 +51,7 @@ public class RailsIHM extends Application {
 
         serviceDuJeu = new ServiceDuJeu(nomsJoueurs.toArray(new String[0]));
         vueDuJeu = new VueDuJeu(serviceDuJeu.getJeu());
-        Scene scene = new Scene(vueDuJeu); // la scene doit être créée avant de mettre en place les bindings
+        Scene scene = new Scene(vueDuJeu, 1600, 900); // la scene doit être créée avant de mettre en place les bindings
         vueDuJeu.creerBindings();
         demarrerServiceJeu(); // le service doit être démarré après que les bindings ont été mis en place
 

@@ -9,12 +9,13 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 /**
  * Vue utilisée dans la partie basse du BorderPane de la VueDuJeu.
  */
-public class VuePanneauDeControles extends GridPane {
+public class VuePanneauDeControles extends HBox {
 
     private IJeu jeu;
     private VueChoix choix;
@@ -46,9 +47,9 @@ public class VuePanneauDeControles extends GridPane {
         imagePasser.setFitHeight(30);
         imagePasser.setPreserveRatio(true);
 
-        this.add(reglages, 0, 0);
-        this.add(choix, 1, 0);
-        this.add(conteneurPasser, 2, 0);
+        this.getChildren().add(reglages);
+        this.getChildren().add(choix);
+        this.getChildren().add(conteneurPasser);
 
         styliser();
     }
@@ -62,6 +63,6 @@ public class VuePanneauDeControles extends GridPane {
 
     public void styliser() {
         this.setAlignment(Pos.CENTER);
-        this.setHgap(30);
+        this.setSpacing(50);
     }
 }

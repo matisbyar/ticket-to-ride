@@ -40,7 +40,7 @@ public class VueDuJeu extends BorderPane {
         autresJoueurs = new VueAutresJoueurs(jeu, jeu.getJoueurs());
         panneauBas = new VuePanneauDeControles(jeu);
 
-        styliser();
+        // styliser();
 
         // Attribution des positions
         this.setCenter(plateau);
@@ -103,19 +103,8 @@ public class VueDuJeu extends BorderPane {
     }
 
     private void styliser() {
-        // Création de la VueChoix
-        ColumnConstraints column = new ColumnConstraints();
-        column.setPercentWidth(25);
-        panneauBas.getColumnConstraints().add(column);
-        column = new ColumnConstraints();
-        column.setPercentWidth(100);
-        panneauBas.getColumnConstraints().add(column);
-        column = new ColumnConstraints();
-        column.setPercentWidth(25);
-        panneauBas.getColumnConstraints().add(column);
-
-        panneauBas.setPrefSize(this.getWidth(), this.getHeight()); // Default width and height
-        panneauBas.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+        // panneauBas.setPrefSize(this.getWidth(), this.getHeight()); // Default width and height
+        // panneauBas.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
     }
 
     public void masquer() {
