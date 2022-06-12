@@ -1,3 +1,8 @@
 .button {
     -fx-background-color: Transparent;
 }
+
+.boutonFS {
+    -fx-background-color: false;
+    -fx-text-fill: #bbbbbb;
+}

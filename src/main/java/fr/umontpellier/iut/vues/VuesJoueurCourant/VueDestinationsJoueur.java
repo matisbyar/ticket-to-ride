@@ -41,7 +41,7 @@ public class VueDestinationsJoueur extends VBox {
                         vide.setManaged(false);
                         vide.setVisible(false);
 
-                        texte.setText("Mes missions (" + nouveauJoueur.getCartesWagon().size() + ")");
+                        texte.setText("Mes missions (" + nouveauJoueur.getDestinations().size() + ")");
                         VueDestinationsJoueur.super.getChildren().clear();
                         VueDestinationsJoueur.super.getChildren().add(texte);
                         for (IDestination carte: nouveauJoueur.getDestinations()) {

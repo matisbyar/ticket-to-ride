@@ -48,7 +48,6 @@ public class VueAutresJoueursMini extends VBox {
         nom.setFont(Font.font("Georgia", FontWeight.BOLD, 16));
         score.setFont(Font.font("Courier New", 13));
         wagons.setFont(Font.font("Courier New", 13));
-        vousJouez.setFont(Font.font("Courier New", 13));
         this.setStyle("-fx-background-radius: 20px");
         this.setAlignment(Pos.TOP_CENTER);
         this.setPadding(new Insets(5));
